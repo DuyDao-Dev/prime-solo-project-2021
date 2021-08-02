@@ -22,6 +22,8 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
 
+//initial commit
+
 function App() {
   const dispatch = useDispatch();
 
