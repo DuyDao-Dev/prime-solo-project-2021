@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-// import SearchResults from "../SearchResults/SearchResults";
+import SearchResults from "../SearchResults/SearchResults";
 
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import { Button, Card } from "react-bootstrap";
@@ -31,7 +31,7 @@ function Search() {
         <button className="searchButton" type="submit">
           Search
         </button>
-        {/* <SearchResults/> */}
+        <SearchResults/>
       </center>
     </form>
   );
