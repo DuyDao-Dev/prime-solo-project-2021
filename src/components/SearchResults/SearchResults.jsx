@@ -20,6 +20,16 @@ function SearchResults () {
               <tr key={index}>
                 <td>
                   <img src={result.recipe.image}></img>
+                  <p>{result.recipe.label}</p>
+                  <a>{result.recipe.url}</a>
+                  <a href={result.recipe.url}>
+                    Recipe Link: {result.recipe.label}
+                  </a>
+                  {result.recipe.ingredientLines.map ((ingredient, i) => {
+                      return (
+                        <li key={i}>{ingredient}</li>
+                      )
+                  })}
                 </td>
               </tr>
             );
