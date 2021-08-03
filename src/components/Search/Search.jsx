@@ -39,22 +39,22 @@ function Search() {
 
 export default Search;
 
-    {
-      /* <div class="card" style="width: 18rem;">
-        <img
-          src="${data.hits[0].recipe.image}"
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body">
-          <h5 class="card-title">${data.hits[0].recipe.label}</h5>
-          <p class="card-text">
-            Recipe Source: ${data.hits[0].recipe.ingredients}
-          </p>
-          <a href="${data.hits[0].recipe.url}" class="btn btn-primary">
-            Go somewhere
-          </a>
-        </div>
-    </div> */
-    }
+    // {
+    //   /* <div class="card" style="width: 18rem;">
+    //     <img
+    //       src="${data.hits[0].recipe.image}"
+    //       class="card-img-top"
+    //       alt="..."
+    //     />
+    //     <div class="card-body">
+    //       <h5 class="card-title">${data.hits[0].recipe.label}</h5>
+    //       <p class="card-text">
+    //         Recipe Source: ${data.hits[0].recipe.ingredients}
+    //       </p>
+    //       <a href="${data.hits[0].recipe.url}" class="btn btn-primary">
+    //         Go somewhere
+    //       </a>
+    //     </div>
+    // </div> */
+    // }
 
