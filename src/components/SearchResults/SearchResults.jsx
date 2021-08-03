@@ -1,21 +1,21 @@
 import { useDispatch, useSelector } from "react-redux";
 
-function SearchResults () {
+function SearchResults() {
+  const dispatch = useDispatch();
+  const search = useSelector((store) => store.search);
+  console.log(`Search results from Search component`, search);
 
-    const dispatch = useDispatch();
-    const search = useSelector((store) => store.search);
-    console.log(`Search results from Search component`, search);
-
-    return (
-      //need html to display the results of the search.jsx
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {search && search.map((result, index) => {
+  return (
+    //need html to display the results of the search.jsx
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {search &&
+          search.map((result, index) => {
             return (
               <tr key={index}>
                 <td>
@@ -25,29 +25,53 @@ function SearchResults () {
                   <a href={result.recipe.url}>
                     Recipe Link: {result.recipe.label}
                   </a>
-                  {result.recipe.ingredientLines.map ((ingredient, i) => {
-                      return (
-                        <li key={i}>{ingredient}</li>
-                      )
-                  })}
+                  <ul>
+                    {result.recipe.ingredientLines.map((ingredient, i) => {
+                      return <li key={i}>{ingredient}</li>;
+                      // <input key={i}> type="checkbox">{ingredient}</input>;
+                    })}
+                  </ul>
                 </td>
               </tr>
             );
           })}
-        </tbody>
-      </table>
-    );
+      </tbody>
+    </table>
+  );
 }
 
 export default SearchResults;
 
-// Will need some type of mapping for the search results. Think about cards.
+
+//Think about whether or not I want all the ingredients displayed right away or do a toggle
+//Where the ingredients show up on toggle. Code below to test out. 
+    // const [display, setDisplay] = useState(true);
+    // console.log(`What is GalleryItem doing`, image);//all objects in array being passed successfully!
+
+    // const toggleDisplay = () => {
+    // console.log('Image has been clicked');
+    // //set state
+    // setDisplay(!display)
+    // }
+
+    // return (
+    //     <>
+    //     <div className="container">
+    //     <section onClick={() => toggleDisplay(image.id)}  className="galleryItem">
+    //         { display &&
+    //         <img className="photoItem" src={image.path} alt={image.description}/>}
+    //         { !display &&
+    //         <p className="itemDescription">{image.description}</p>}
+    //     </section
+
+
+
+    // Will need some type of mapping for the search results. Think about cards.
 // Material UI link for cards: https://material-ui.com/components/cards/#card
 // Check out "Complex Interactions"
 
 // import React from 'react';
 // import { makeStyles } from '@material-ui/core/styles';
-// import clsx from 'clsx';
 // import Card from '@material-ui/core/Card';
 // import CardHeader from '@material-ui/core/CardHeader';
 // import CardMedia from '@material-ui/core/CardMedia';
@@ -59,7 +83,7 @@ export default SearchResults;
 // import Typography from '@material-ui/core/Typography';
 // import { red } from '@material-ui/core/colors';
 // import FavoriteIcon from '@material-ui/icons/Favorite';
-// import ShareIcon from '@material-ui/icons/Share';
+// import DeleteIcon from '@material-ui/icons/DeleteOutlined';
 // import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 // import MoreVertIcon from '@material-ui/icons/MoreVert';
 
@@ -96,6 +120,7 @@ export default SearchResults;
 
 //   return (
 //     <Card className={classes.root}>
+
 //       <CardHeader
 //         avatar={
 //           <Avatar aria-label="recipe" className={classes.avatar}>
@@ -107,26 +132,19 @@ export default SearchResults;
 //             <MoreVertIcon />
 //           </IconButton>
 //         }
-//         title="Shrimp and Chorizo Paella"
-//         subheader="September 14, 2016"
+//         title={result.recipe.label}
 //       />
 //       <CardMedia
 //         className={classes.media}
-//         image="/static/images/cards/paella.jpg"
-//         title="Paella dish"
+//         image={result.recipe.image}
+//         title={result.recipe.label}
 //       />
-//       <CardContent>
-//         <Typography variant="body2" color="textSecondary" component="p">
-//           This impressive paella is a perfect party dish and a fun meal to cook together with your
-//           guests. Add 1 cup of frozen peas along with the mussels, if you like.
-//         </Typography>
-//       </CardContent>
 //       <CardActions disableSpacing>
 //         <IconButton aria-label="add to favorites">
 //           <FavoriteIcon />
 //         </IconButton>
-//         <IconButton aria-label="share">
-//           <ShareIcon />
+//         <IconButton aria-label="delete">
+//           {/* <DeleteIcon /> Look up delete button */}
 //         </IconButton>
 //         <IconButton
 //           className={clsx(classes.expand, {
@@ -141,31 +159,14 @@ export default SearchResults;
 //       </CardActions>
 //       <Collapse in={expanded} timeout="auto" unmountOnExit>
 //         <CardContent>
-//           <Typography paragraph>Method:</Typography>
+//           <Typography paragraph>Recipe URL:</Typography>
 //           <Typography paragraph>
-//             Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-//             minutes.
+//             {result.recipe.url}
 //           </Typography>
-//           <Typography paragraph>
-//             Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-//             heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
-//             browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
-//             and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and
-//             pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add
-//             saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-//           </Typography>
-//           <Typography paragraph>
-//             Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
-//             without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
-//             medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook
-//             again without stirring, until mussels have opened and rice is just tender, 5 to 7
-//             minutes more. (Discard any mussels that don’t open.)
-//           </Typography>
-//           <Typography>
-//             Set aside off of the heat to let rest for 10 minutes, and then serve.
-//           </Typography>
+          
 //         </CardContent>
 //       </Collapse>
+     
 //     </Card>
 //   );
 // }
