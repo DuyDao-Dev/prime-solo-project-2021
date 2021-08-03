@@ -25,13 +25,13 @@ function Search() {
         <input
           className="Search"
           value={search}
-          onChange={handleSearchChange}
+          onChange={(event) => setSearch(event.target.value)}
           placeholder="Enter Ingredient"
         />
         <button className="searchButton" type="submit">
           Search
         </button>
-        <SearchResults/>
+        <SearchResults />
       </center>
     </form>
   );

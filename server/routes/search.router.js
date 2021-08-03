@@ -4,6 +4,7 @@ const axios = require("axios");
 require("dotenv").config();
 const rejectUnauthenticated =
   require("../modules/authentication-middleware").rejectUnauthenticated;
+const { Link } = require("react-router-dom");
 
 
 router.get("/:search", rejectUnauthenticated, (req, res) => {
@@ -18,8 +19,10 @@ router.get("/:search", rejectUnauthenticated, (req, res) => {
     .then((response) => {
       console.log(`server GETting response`, response.data.hits[0]);
       // res.sendStatus(200);
-      res.send(response.data);
+      res.send(response.data.hits);
       //Fixed the empty array in searchResults reducer by taking out data from (response.data.data)
+      //Also fixed the response.data by changing it to response.data.hits to drill into the data even 
+      //further to make search.map to work on SearchResults.jsx page.
     })
     .catch((err) => {
       console.log(err);
