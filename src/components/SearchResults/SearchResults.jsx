@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 
 function SearchResults() {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const [newFavorite, setNewFavorite] = useState("");
   const search = useSelector((store) => store.search);
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -56,75 +56,77 @@ function SearchResults() {
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
+    dispatch({ type: "POST_FAVORITE", payload: newFavorite }); //This is going to add.favorite.saga
+    console.log(`What is newFavorite passing in SearchResults?`, newFavorite);
   };
-
-//   const handleRecipeDetails = (selectRecipe) => {
-//     dispatch({ type: SELECT_RECIPE, payload: selectRecipe});
-//     history.push('/RecipeDisplay');
-//   }
+  //Console log is showing 19 times. I need to figure out a way to make it
+  //a unique click for each.
 
   return (
     <section>
-    {search && search.map((result, index) => {
-        return (
-    
-    <Card className={classes.root}>
-      <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            R
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title={result.recipe.label}
-      />
-      <CardMedia
-        className={classes.media}
-        image={result.recipe.image}
-        title={result.recipe.label}
-      />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-            <a href={result.recipe.url}>
-            Recipe Link: {result.recipe.label}
-            </a>
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>Ingredients:</Typography>
-          <Typography paragraph>
-            {result.recipe.ingredientLines.map((ingredient, i) => {
-            return <li key={i}>{ingredient}</li>;
-          // <input key={i}> type="checkbox">{ingredient}</input>;
-            })}
-          </Typography>
-        </CardContent>
-      </Collapse>
-    </Card>
-    )})}
+      {search &&
+        search.map((result, index) => {
+          return (
+            <Card className={classes.root}>
+              <CardHeader
+                avatar={
+                  <Avatar aria-label="recipe" className={classes.avatar}>
+                    R
+                  </Avatar>
+                }
+                action={
+                  <IconButton aria-label="settings">
+                    <MoreVertIcon />
+                  </IconButton>
+                }
+                title={result.recipe.label}
+              />
+              <CardMedia
+                className={classes.media}
+                image={result.recipe.image}
+                title={result.recipe.label}
+              />
+              <CardContent>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  <a href={result.recipe.url}>
+                    Recipe Link: {result.recipe.label}
+                  </a>
+                </Typography>
+              </CardContent>
+              <CardActions disableSpacing>
+                <IconButton aria-label="add to favorites">
+                  <FavoriteIcon />
+                </IconButton>
+                <IconButton aria-label="share">
+                  <ShareIcon />
+                  {/* Lets turn this into the button to add to shopping list */}
+                </IconButton>
+                <IconButton
+                  className={clsx(classes.expand, {
+                    [classes.expandOpen]: expanded,
+                  })}
+                  onClick={handleExpandClick}
+                  aria-expanded={expanded}
+                  aria-label="show more"
+                  // onClick={(event) => setNewFavorite(result.recipe.id)}
+                >
+                  <ExpandMoreIcon />
+                </IconButton>
+              </CardActions>
+              <Collapse in={expanded} timeout="auto" unmountOnExit>
+                <CardContent>
+                  <Typography paragraph>Ingredients:</Typography>
+                  <Typography paragraph>
+                    {result.recipe.ingredientLines.map((ingredient, i) => {
+                      return <li key={i}>{ingredient}</li>;
+                      // <input key={i}> type="checkbox">{ingredient}</input>;
+                    })}
+                  </Typography>
+                </CardContent>
+              </Collapse>
+            </Card>
+          );
+        })}
     </section>
   );
 }

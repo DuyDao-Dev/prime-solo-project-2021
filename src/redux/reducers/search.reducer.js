@@ -1,12 +1,9 @@
-
-
 const searchReducer = (state = [], action) => {
   if (action.type === "SET_RESULTS") {
     console.log(`In searchReducer`, action.payload);
-    console.log(`In searchReducer`, action);
-    console.log(`In searchReducer`, state);
     return action.payload;
-    // return [...state, action.payload]; //Tried this because ingredients all came back as empty objects.
+    //fixed an earlier issue with returned empty objects. Had to drill deeper
+    //from search router response.data.hits.
   }
   return state;
 };
