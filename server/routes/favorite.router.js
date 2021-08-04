@@ -4,7 +4,7 @@ const pool = require('../modules/pool');
 
 router.get('/', (req, res) => {
 //   const favoriteId = req.body;
-  console.log(`What is req.params.id on genre.router doing?`, req.body);
+  console.log(`What is req.body doing?`, req.body);
   // Add query to get all genres
   const allFavoriteQuery = `
     SELECT *

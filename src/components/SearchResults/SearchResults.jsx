@@ -61,9 +61,9 @@ function SearchResults() {
   };
 
   //Need handler for favorite button
-  const onFavoriteClick = (favoriteId) => {
-      dispatch({ type: "POST_FAVORITE", payload: favoriteId }); //This is going to add.favorite.saga
-      console.log(`What is newFavorite passing in SearchResults?`, newFavorite);
+  const onFavoriteClick = (favoriteItem) => {
+      dispatch({ type: "POST_FAVORITE", payload: favoriteItem }); //This is going to add.favorite.saga
+      console.log(`What is newFavorite passing in SearchResults?`, favoriteItem);
   }
 
 

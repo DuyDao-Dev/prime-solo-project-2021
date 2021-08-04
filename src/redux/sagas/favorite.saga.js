@@ -1,6 +1,5 @@
 import axios from "axios";
-import { put, takeLatest } from "redux-saga/effects";
-import postFavorite from "./add.favorite.saga";
+import { put, takeEvery } from "redux-saga/effects";
 
 function* favoriteSaga() {
   yield takeEvery("FETCH_FAVORITE", fetchFavorite); 

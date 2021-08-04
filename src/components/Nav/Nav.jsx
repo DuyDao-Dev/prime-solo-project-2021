@@ -29,6 +29,9 @@ function Nav() {
         <Link className="navLink" to="/search">
           Search
         </Link>
+        <Link className="navLink" to="/favorite">
+          Favorite Recipes
+        </Link>
         {user.id && (
           <>
             <Link className="navLink" to="/info">
