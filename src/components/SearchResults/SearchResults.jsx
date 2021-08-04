@@ -18,6 +18,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import FormLabel from "@material-ui/core/FormLabel";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
 
 function SearchResults() {
   const dispatch = useDispatch();
-  const [newFavorite, setNewFavorite] = useState("");
+//   const [newFavorite, setNewFavorite] = useState("");
   const search = useSelector((store) => store.search);
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -56,14 +58,17 @@ function SearchResults() {
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
-    dispatch({ type: "POST_FAVORITE", payload: newFavorite }); //This is going to add.favorite.saga
-    console.log(`What is newFavorite passing in SearchResults?`, newFavorite);
   };
-  //Console log is showing 19 times. I need to figure out a way to make it
-  //a unique click for each.
+
+  //Need handler for favorite button
+  const onFavoriteClick = (favoriteId) => {
+      dispatch({ type: "POST_FAVORITE", payload: favoriteId }); //This is going to add.favorite.saga
+      console.log(`What is newFavorite passing in SearchResults?`, newFavorite);
+  }
+
 
   return (
-    <section>
+    <Grid container className={classes.root} spacing={2}>
       {search &&
         search.map((result, index) => {
           return (
@@ -94,10 +99,14 @@ function SearchResults() {
                 </Typography>
               </CardContent>
               <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
+                <IconButton
+                  aria-label="add to favorites"
+                  onClick={(event) => onFavoriteClick(result.recipe.index)}
+                >
                   <FavoriteIcon />
                 </IconButton>
                 <IconButton aria-label="share">
+                  {/* Turn this button to a shopping cart to add to shopping list */}
                   <ShareIcon />
                   {/* Lets turn this into the button to add to shopping list */}
                 </IconButton>
@@ -108,7 +117,6 @@ function SearchResults() {
                   onClick={handleExpandClick}
                   aria-expanded={expanded}
                   aria-label="show more"
-                  // onClick={(event) => setNewFavorite(result.recipe.id)}
                 >
                   <ExpandMoreIcon />
                 </IconButton>
@@ -127,7 +135,7 @@ function SearchResults() {
             </Card>
           );
         })}
-    </section>
+    </Grid>
   );
 }
 

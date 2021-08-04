@@ -3,16 +3,16 @@ const router = express.Router();
 const pool = require('../modules/pool');
 
 router.get('/', (req, res) => {
-  const favoriteId = req.params.id;
-  console.log(`What is req.params.id on genre.router doing?`, req.params.id);
+//   const favoriteId = req.body;
+  console.log(`What is req.params.id on genre.router doing?`, req.body);
   // Add query to get all genres
   const allFavoriteQuery = `
     SELECT *
     FROM favorite_recipe;`;
 
-  console.log(`What is favoriteId doing?`, favoriteId);
+//   console.log(`What is favoriteId doing?`, favoriteId);
   pool
-    .query(allFavoriteQuery, [favoriteId])
+    .query(allFavoriteQuery)
     .then((result) => {
       res.send(result.rows);
     })
@@ -27,14 +27,16 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   const newFavorite = req.body;
   console.log('FAVORITE ADDED', newFavorite);
-  const queryText = 'INSERT INTO "favorite_recipe" ("name", "url") VALUES ($1, $2);';
-  pool.query(queryText, [newFavorite.name, newFavorite.url])
-  .then(response => {
-    res.sendStatus(201);
-  }).catch(error => {
-    console.log('Error POSTing Favorite to db', error);
-    res.sendStatus(500);
-  })
+  const queryText = 'INSERT INTO "favorite_recipe" ("name", "image", "url") VALUES ($1, $2, $3);';
+  pool
+    .query(queryText, [newFavorite.name, newFavorite.image, newFavorite.url])
+    .then((response) => {
+      response.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log("Error POSTing Favorite to db", error);
+      res.sendStatus(500);
+    });
   
 });
 
