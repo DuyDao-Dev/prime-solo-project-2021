@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool');
+const rejectUnauthenticated =
+  require("../modules/authentication-middleware").rejectUnauthenticated;
 
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
 //   const favoriteId = req.body;
   console.log(`What is req.body doing?`, req.body);
   // Add query to get all genres
@@ -24,10 +26,12 @@ router.get('/', (req, res) => {
 
 
 // add a new favorite
-router.post('/', (req, res) => {
-  const newFavorite = req.body;
+router.post('/', rejectUnauthenticated, (req, res) => {
+  const newFavorite = req.params;
   console.log('FAVORITE ADDED', newFavorite);
-  const queryText = 'INSERT INTO "favorite_recipe" ("name", "image", "url") VALUES ($1, $2, $3);';
+  const queryText = `
+  INSERT INTO "favorite_recipe" ("name", "image", "url") 
+  VALUES ($1, $2, $3);`;
   pool
     .query(queryText, [newFavorite.name, newFavorite.image, newFavorite.url])
     .then((response) => {

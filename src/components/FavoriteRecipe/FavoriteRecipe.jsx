@@ -12,7 +12,7 @@ import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
-import ShareIcon from "@material-ui/icons/Share";
+import DeleteIcon from "@material-ui/icons/Delete";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Grid from "@material-ui/core/Grid";
 
@@ -52,6 +52,7 @@ function FavoriteRecipe () {
     useEffect(() => {
     dispatch({ type: "FETCH_FAVORITE" });
     }, []);
+
     //Need a dispatch to delete recipes
 
     return (
@@ -85,17 +86,14 @@ function FavoriteRecipe () {
                       color="textSecondary"
                       component="p"
                     >
-                      <a href={list.url}>
-                        Recipe Link: {list.name}
-                      </a>
+                      <a href={list.url}>Recipe Link: {list.name}</a>
                     </Typography>
                   </CardContent>
                   <CardActions disableSpacing>
-                    <IconButton aria-label="share">
-                      {/* Turn this button to a shopping cart to add to shopping list */}
-                      <ShareIcon />
-                      {/* Lets turn this into the button to add to shopping list */}
+                    <IconButton aria-label="delete" color="secondary">
+                      <DeleteIcon />
                     </IconButton>
+                    <Typography>Delete</Typography>
                   </CardActions>
                 </Card>
               );

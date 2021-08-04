@@ -20,6 +20,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import FormLabel from "@material-ui/core/FormLabel";
 import Grid from "@material-ui/core/Grid";
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -57,7 +58,7 @@ function SearchResults() {
   console.log(`Search results from Search component`, search);
 
   const handleExpandClick = () => {
-    setExpanded(!expanded);
+    setExpanded(!expanded); //set conditional rendering to make shopping cart icon to pop up
   };
 
   //Need handler for favorite button
@@ -105,10 +106,8 @@ function SearchResults() {
                 >
                   <FavoriteIcon />
                 </IconButton>
-                <IconButton aria-label="share">
-                  {/* Turn this button to a shopping cart to add to shopping list */}
-                  <ShareIcon />
-                  {/* Lets turn this into the button to add to shopping list */}
+                <IconButton color="primary" aria-label="add to shopping cart">
+                  <AddShoppingCartIcon />
                 </IconButton>
                 <IconButton
                   className={clsx(classes.expand, {
