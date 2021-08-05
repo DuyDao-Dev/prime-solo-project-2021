@@ -64,8 +64,8 @@ function ShoppingList() {
             <Card className={classes.root}>
               <CardHeader
                 avatar={
-                  <Avatar aria-label="recipe" className={classes.avatar}>
-                    F
+                  <Avatar aria-label="ingredients" className={classes.avatar}>
+                    I
                   </Avatar>
                 }
                 action={

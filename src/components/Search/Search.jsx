@@ -6,7 +6,7 @@ import SearchResults from "../SearchResults/SearchResults";
 // import { Button, Card } from "react-bootstrap";
 
 function Search() {
-    const [search, setSearch] = useState("");
+    const [search, setSearch] = useState('');
     const dispatch = useDispatch();
 
     const handleSearchChange = () => {

@@ -1,30 +1,32 @@
 import { useDispatch, useSelector } from "react-redux";
 // import { useHistory } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 
-import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
+import Collapse from "@material-ui/core/Collapse";
+import Avatar from "@material-ui/core/Avatar";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import { red } from "@material-ui/core/colors";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Grid from "@material-ui/core/Grid";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-import Checkbox from '@material-ui/core/Checkbox';
+import {
+  FormGroup,
+  FormControlLabel,
+  Checkbox,
+  FormControl,
+} from "@material-ui/core";
 
-
-
-
-const useStyles = makeStyles((theme) => ({
+const useStyle = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
   },
@@ -50,33 +52,41 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 function SearchResults() {
   const dispatch = useDispatch();
-//   const [newFavorite, setNewFavorite] = useState("");
+  //   const [newFavorite, setNewFavorite] = useState("");
+  const classes = useStyle();
   const search = useSelector((store) => store.search);
-  const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-  console.log(`What is search in SearchResults`, search);
+  const [newIngredient, setNewIngredient] = useState([]);
+  console.log(`What is onIngredientClick`, newIngredient);
 
   const handleExpandClick = () => {
     setExpanded(!expanded); //set conditional rendering to make shopping cart icon to pop up
   };
 
   function Checkboxes() {
-  const [checked, setChecked] = React.useState(true);
+    const [checked, setChecked] = React.useState(true);
 
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
+    const handleChange = (event) => {
+      setChecked(event.target.checked);
+    //   setIngredientsArray({
+    // //     ...ingredientsArray,
+    // //     [event.target.name]: event.target.checked,
+    // //   });
     };
   }
 
   //Need handler for favorite button
   const onFavoriteClick = (favoriteItem) => {
-      dispatch({ type: "POST_FAVORITE", payload: favoriteItem }); //This is going to favorite.saga
-      console.log(`What is newFavorite passing in SearchResults?`, favoriteItem);
-  }
+    dispatch({ type: "POST_FAVORITE", payload: favoriteItem }); //This is going to favorite.saga
+    console.log(`What is newFavorite passing in SearchResults?`, favoriteItem);
+  };
 
+  const onIngredientClick = () => {
+    dispatch({ type: "POST_INGREDIENT", payload: newIngredient });
+    console.log(`What is happening onIngredientClick`, newIngredient);
+  };
 
   return (
     <Grid container className={classes.root} spacing={2}>
@@ -136,6 +146,10 @@ function SearchResults() {
                       return (
                         <ul key={i}>
                           <Checkbox
+                            // value={!setSpecialties.checkedFade}
+                            onClick={(event) =>
+                              setNewIngredient([...newIngredient, ingredient])
+                            }
                             color="default"
                             inputProps={{
                               "aria-label": "checkbox with default color",
@@ -145,15 +159,16 @@ function SearchResults() {
                         </ul>
                       );
                     })}
-                    <IconButton
-                      
-                      color="primary"
-                      aria-label="add to shopping cart"
-                    >
-                      <AddShoppingCartIcon />
-                    </IconButton>
                     <Typography>Add to Shopping List</Typography>
                   </Typography>
+                  <IconButton
+                    onClick={(event) => onIngredientClick()}
+                    color="primary"
+                    aria-label="add to shopping cart"
+                  >
+                    <AddShoppingCartIcon />
+                  </IconButton>
+                  <Typography>Add to Shopping List</Typography>
                 </CardContent>
               </Collapse>
             </Card>
@@ -163,18 +178,38 @@ function SearchResults() {
   );
 }
 
-
 export default SearchResults;
 
-// Stretch Goal: Think about using this cart icon instead. For 
-// badgeContent, I think I can adjust the number when a user checks off 
-// a box for ingredients.
-    // <IconButton aria-label="cart">
-    //   <StyledBadge badgeContent={4} color="secondary">
-    //     <ShoppingCartIcon />
-    //   </StyledBadge>
-    // </IconButton>;
+//Matt's code for his material UI for movie saga
 
+
+
+// Somewhat working code for checkboxes
+//   <Typography paragraph>Ingredients:</Typography>
+//   <Typography paragraph>
+//     {result.recipe.ingredientLines.map((ingredient, i) => {
+//       return (
+//         <ul key={i}>
+//           <Checkbox
+//             onClick={(event) => setNewIngredient(result.recipe.ingredientLines[i])}
+//             color="default"
+//             inputProps={{
+//               "aria-label": "checkbox with default color",
+//             }}
+//           />
+//           {ingredient}
+//         </ul>
+//       );
+//     })}
+//     <IconButton
+//       onClick={(event) => onIngredientClick()}
+//       color="primary"
+//       aria-label="add to shopping cart"
+//     >
+//       <AddShoppingCartIcon />
+//     </IconButton>
+//     <Typography>Add to Shopping List</Typography>
+//   </Typography>
 
 // Original Working Code
 //     <table>
@@ -212,4 +247,3 @@ export default SearchResults;
 //       </tbody>
 //     </table>
 //   );
-

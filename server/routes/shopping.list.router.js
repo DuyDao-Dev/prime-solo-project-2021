@@ -22,6 +22,25 @@ router.get("/", rejectUnauthenticated, (req, res) => {
     });
 });
 
+// POST new ingredients
+router.post('/', (req, res) => {
+  const newIngredient = req.body;
+  console.log('Ingredient POSTed: ', newIngredient);
+  const queryText = `
+  INSERT INTO "shopping_list" ("ingredient_name") 
+  VALUES ($1);`;
+  pool
+    .query(queryText, [newIngredient.ingredient_name])
+    .then((response) => {
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log("Error POSTing Ingredient to db", error);
+      res.sendStatus(500);
+    });
+  
+});
+
 // update ingredients in shopping_list table on database
 // router.put("/:favId", (req, res) => {
 //   // req.body should contain a category_id to add to this favorite image
