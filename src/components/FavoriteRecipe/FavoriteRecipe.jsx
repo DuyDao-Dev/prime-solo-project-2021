@@ -55,6 +55,10 @@ function FavoriteRecipe () {
 
     //STRETCH GOAL: Rating system for favorite recipes
     //Need a dispatch to delete recipes
+    const handleDelete = (deleteItem) => {
+        dispatch({ type: "DELETE_FAVORITE", payload: deleteItem})
+        console.log('Deleting item from FavoriteRecipe', deleteItem);
+    }
 
     return (
 
@@ -91,7 +95,13 @@ function FavoriteRecipe () {
                     </Typography>
                   </CardContent>
                   <CardActions disableSpacing>
-                    <IconButton aria-label="delete" color="secondary">
+                    <IconButton
+                      aria-label="delete"
+                      color="secondary"
+                      onClick={() => {
+                        handleDelete(list.id);
+                      }}
+                    >
                       <DeleteIcon />
                     </IconButton>
                     <Typography>Delete</Typography>

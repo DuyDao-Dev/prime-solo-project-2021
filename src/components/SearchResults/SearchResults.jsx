@@ -57,7 +57,7 @@ function SearchResults() {
   const search = useSelector((store) => store.search);
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-  console.log(`Search results from Search component`, search);
+  console.log(`What is search in SearchResults`, search);
 
   const handleExpandClick = () => {
     setExpanded(!expanded); //set conditional rendering to make shopping cart icon to pop up
@@ -73,7 +73,7 @@ function SearchResults() {
 
   //Need handler for favorite button
   const onFavoriteClick = (favoriteItem) => {
-      dispatch({ type: "POST_FAVORITE", payload: favoriteItem }); //This is going to add.favorite.saga
+      dispatch({ type: "POST_FAVORITE", payload: favoriteItem }); //This is going to favorite.saga
       console.log(`What is newFavorite passing in SearchResults?`, favoriteItem);
   }
 
@@ -83,7 +83,7 @@ function SearchResults() {
       {search &&
         search.map((result, index) => {
           return (
-            <Card className={classes.root}>
+            <Card className={classes.root} key={index}>
               <CardHeader
                 avatar={
                   <Avatar aria-label="recipe" className={classes.avatar}>
@@ -112,10 +112,11 @@ function SearchResults() {
               <CardActions disableSpacing>
                 <IconButton
                   aria-label="add to favorites"
-                  onClick={(event) => onFavoriteClick(result.recipe.index)}
+                  onClick={(event) => onFavoriteClick(result.recipe)}
                 >
                   <FavoriteIcon />
                 </IconButton>
+
                 <IconButton
                   className={clsx(classes.expand, {
                     [classes.expandOpen]: expanded,
@@ -145,6 +146,7 @@ function SearchResults() {
                       );
                     })}
                     <IconButton
+                      
                       color="primary"
                       aria-label="add to shopping cart"
                     >

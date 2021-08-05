@@ -5,14 +5,12 @@ const rejectUnauthenticated =
   require("../modules/authentication-middleware").rejectUnauthenticated;
 
 router.get('/', rejectUnauthenticated, (req, res) => {
-//   const favoriteId = req.body;
   console.log(`What is req.body doing?`, req.body);
   // Add query to get all genres
   const allFavoriteQuery = `
     SELECT *
     FROM favorite_recipe;`;
 
-//   console.log(`What is favoriteId doing?`, favoriteId);
   pool
     .query(allFavoriteQuery)
     .then((result) => {
@@ -25,23 +23,42 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 
-// add a new favorite
+// add a new favorite recipe
 router.post('/', rejectUnauthenticated, (req, res) => {
-  const newFavorite = req.params;
+  const newFavorite = req.body;
   console.log('FAVORITE ADDED', newFavorite);
   const queryText = `
   INSERT INTO "favorite_recipe" ("name", "image", "url") 
   VALUES ($1, $2, $3);`;
   pool
-    .query(queryText, [newFavorite.name, newFavorite.image, newFavorite.url])
+    .query(queryText, [newFavorite.label, newFavorite.image, newFavorite.url])
     .then((response) => {
-      response.sendStatus(201);
+      res.sendStatus(201);
     })
     .catch((error) => {
       console.log("Error POSTing Favorite to db", error);
       res.sendStatus(500);
     });
   
+});
+
+// delete a favorite recipe
+router.delete("/:id", rejectUnauthenticated, (req, res) => {
+  // endpoint functionality
+  console.log(`What is being DELETED:`, req.params.id);
+  const deleteFavoriteQuery = `
+  DELETE from favorite_recipe 
+  WHERE id=$1;`;
+  pool
+    .query(deleteFavoriteQuery, [req.params.id])
+    .then((result) => {
+      console.log(`Successfully DELETED from database`, result);
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log(`Did not DELETE from database`, error);
+      res.sendStatus(500);
+    });
 });
 
 // // update given favorite with a category id
@@ -65,9 +82,5 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 // });
 
-// // delete a favorite
-// router.delete('/', (req, res) => {
-//   res.sendStatus(200);
-// });
 
 module.exports = router;
