@@ -166,6 +166,15 @@ function SearchResults() {
 
 export default SearchResults;
 
+// Stretch Goal: Think about using this cart icon instead. For 
+// badgeContent, I think I can adjust the number when a user checks off 
+// a box for ingredients.
+    // <IconButton aria-label="cart">
+    //   <StyledBadge badgeContent={4} color="secondary">
+    //     <ShoppingCartIcon />
+    //   </StyledBadge>
+    // </IconButton>;
+
 
 // Original Working Code
 //     <table>

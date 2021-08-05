@@ -32,6 +32,9 @@ function Nav() {
         <Link className="navLink" to="/favorite">
           Favorite Recipes
         </Link>
+        <Link className="navLink" to="/shopping">
+          Shopping List
+        </Link>
         {user.id && (
           <>
             <Link className="navLink" to="/info">

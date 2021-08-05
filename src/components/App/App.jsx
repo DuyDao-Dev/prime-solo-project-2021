@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Search from '../Search/Search';
 import Favorite from '../FavoriteRecipe/FavoriteRecipe';
+import ShoppingList from '../ShoppingList/ShoppingList';
 
 
 import './App.css';
@@ -113,6 +114,10 @@ function App() {
 
           <ProtectedRoute path="/favorite" exact>
             <Favorite />
+          </ProtectedRoute>
+
+          <ProtectedRoute path="/shopping" exact>
+            <ShoppingList />
           </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
