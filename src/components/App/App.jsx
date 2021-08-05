@@ -51,14 +51,6 @@ function App() {
             <AboutPage />
           </Route>
 
-          <Route path="/search" exact>
-            <Search />
-          </Route>
-
-          <Route path="/favorite" exact>
-            <Favorite />
-          </Route>
-
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
@@ -113,6 +105,14 @@ function App() {
             authRedirect="/user"
           >
             <LandingPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute path="/search" exact>
+            <Search />
+          </ProtectedRoute>
+
+          <ProtectedRoute path="/favorite" exact>
+            <Favorite />
           </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}

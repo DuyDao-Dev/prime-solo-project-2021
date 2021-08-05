@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 // import { useHistory } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -53,6 +53,7 @@ function FavoriteRecipe () {
     dispatch({ type: "FETCH_FAVORITE" });
     }, []);
 
+    //STRETCH GOAL: Rating system for favorite recipes
     //Need a dispatch to delete recipes
 
     return (

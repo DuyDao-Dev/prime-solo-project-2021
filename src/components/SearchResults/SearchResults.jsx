@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import React, { useState } from "react";
+// import { useHistory } from "react-router-dom";
+import React from "react";
 
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -15,12 +15,14 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import FormLabel from "@material-ui/core/FormLabel";
 import Grid from "@material-ui/core/Grid";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
+import Checkbox from '@material-ui/core/Checkbox';
+
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,6 +62,14 @@ function SearchResults() {
   const handleExpandClick = () => {
     setExpanded(!expanded); //set conditional rendering to make shopping cart icon to pop up
   };
+
+  function Checkboxes() {
+  const [checked, setChecked] = React.useState(true);
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+    };
+  }
 
   //Need handler for favorite button
   const onFavoriteClick = (favoriteItem) => {
@@ -106,9 +116,6 @@ function SearchResults() {
                 >
                   <FavoriteIcon />
                 </IconButton>
-                <IconButton color="primary" aria-label="add to shopping cart">
-                  <AddShoppingCartIcon />
-                </IconButton>
                 <IconButton
                   className={clsx(classes.expand, {
                     [classes.expandOpen]: expanded,
@@ -125,9 +132,25 @@ function SearchResults() {
                   <Typography paragraph>Ingredients:</Typography>
                   <Typography paragraph>
                     {result.recipe.ingredientLines.map((ingredient, i) => {
-                      return <li key={i}>{ingredient}</li>;
-                      // <input key={i}> type="checkbox">{ingredient}</input>;
+                      return (
+                        <ul key={i}>
+                          <Checkbox
+                            color="default"
+                            inputProps={{
+                              "aria-label": "checkbox with default color",
+                            }}
+                          />
+                          {ingredient}
+                        </ul>
+                      );
                     })}
+                    <IconButton
+                      color="primary"
+                      aria-label="add to shopping cart"
+                    >
+                      <AddShoppingCartIcon />
+                    </IconButton>
+                    <Typography>Add to Shopping List</Typography>
                   </Typography>
                 </CardContent>
               </Collapse>
