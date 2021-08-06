@@ -20,7 +20,7 @@ function* fetchFavorite() {
 
 function* postFavorite(action) {
   try {
-    console.log(`Sending search from fetchSearch saga`, action);
+    console.log(`POSTing search from fetchSearch saga`, action);
     const response = 
     yield axios.post('/api/favorite/', action.payload);
     yield put({ type: "FETCH_FAVORITE", payload: response.data }); //points to searchReducer in search.reducer
@@ -31,7 +31,7 @@ function* postFavorite(action) {
 
 function* deleteFavorite(action) {
   try {
-    console.log(`Sending search from fetchSearch saga`, action);
+    console.log(`DELETE favorite from deleteFavorite saga`, action);
     const response = 
     yield axios.delete(`/api/favorite/${action.payload}`);
     yield put({ type: "FETCH_FAVORITE", payload: response.data }); //points to searchReducer in search.reducer

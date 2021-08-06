@@ -30,7 +30,7 @@ router.post('/', (req, res) => {
   INSERT INTO "shopping_list" ("ingredient_name") 
   VALUES ($1);`;
   pool
-    .query(queryText, [newIngredient.ingredient_name])
+    .query(queryText, [newIngredient])
     .then((response) => {
       res.sendStatus(201);
     })

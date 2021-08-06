@@ -147,8 +147,10 @@ function SearchResults() {
                         <ul key={i}>
                           <Checkbox
                             // value={!setSpecialties.checkedFade}
-                            onClick={(event) =>
-                              setNewIngredient([...newIngredient, ingredient])
+                            onClick={
+                              (event) =>
+                                setNewIngredient([...newIngredient, ingredient])
+                              //...newIngredient spreader allows me to push ingredients into it.
                             }
                             color="default"
                             inputProps={{

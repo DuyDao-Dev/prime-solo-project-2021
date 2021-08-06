@@ -21,8 +21,9 @@ function* fetchIngredient() {
 
 function* postIngredient(action) {
   try {
-    console.log(`Sending search from fetchSearch saga`, action);
-    const response = yield axios.post("/api/shopping/", action.payload);
+    console.log(`POSTing ingredient from postIngredient saga`, action);
+    const response = 
+    yield axios.post('/api/shopping/', action.payload);
     yield put({ type: "FETCH_INGREDIENT", payload: response.data }); //points to searchReducer in search.reducer
   } catch (error) {
     console.log("Error GETting search results", error);
@@ -31,9 +32,9 @@ function* postIngredient(action) {
 
 function* putIngredient(action) {
   try {
-    console.log(`Sending search from fetchSearch saga`, action);
+    console.log(`PUTting ingredient from putIngredient saga`, action);
     const response = 
-    yield axios.put("/api/shopping/", action.payload);
+    yield axios.put('/api/shopping/', action.payload);
     yield put({ type: "FETCH_INGREDIENT", payload: response.data }); //points to searchReducer in search.reducer
   } catch (error) {
     console.log("Error GETting search results", error);
@@ -42,8 +43,9 @@ function* putIngredient(action) {
 
 function* deleteIngredient(action) {
   try {
-    console.log(`Sending search from fetchSearch saga`, action);
-    const response = yield axios.delete(`/api/shopping/${action.payload}`);
+    console.log(`DELETE ingredient from deleteIngredient saga`, action);
+    const response = 
+    yield axios.delete(`/api/shopping/${action.payload}`);
     yield put({ type: "FETCH_INGREDIENT", payload: response.data }); //points to searchReducer in search.reducer
   } catch (error) {
     console.log("Error GETting search results", error);

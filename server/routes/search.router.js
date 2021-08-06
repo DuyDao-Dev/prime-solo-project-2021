@@ -4,7 +4,7 @@ const axios = require("axios");
 require("dotenv").config();
 const rejectUnauthenticated =
   require("../modules/authentication-middleware").rejectUnauthenticated;
-const { Link } = require("react-router-dom");
+// const { Link } = require("react-router-dom");
 
 
 router.get("/:search", rejectUnauthenticated, (req, res) => {
