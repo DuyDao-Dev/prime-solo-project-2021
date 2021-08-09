@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
+import './ShoppingList.css';
 
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -54,7 +55,7 @@ function ShoppingList() {
 
   //Need a dispatch to delete recipes
   const handleDelete = (deleteItem) => {
-    dispatch({ type: "DELETE_INGREDIENT", payload: deleteItem });
+    dispatch({ type: "DELETE_INGREDIENT", payload: deleteItem.id });
     console.log("Deleting item from FavoriteRecipe", deleteItem);
   };
 
@@ -113,7 +114,7 @@ function ShoppingList() {
                     aria-label="delete"
                     color="secondary"
                     onClick={() => {
-                    handleDelete(ingredient.id);
+                    handleDelete(ingredient.status || false);
                   }}
                 >
             <DeleteIcon />

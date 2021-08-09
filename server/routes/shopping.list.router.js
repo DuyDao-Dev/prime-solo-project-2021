@@ -43,18 +43,28 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 // });
 
 // Chad's code to try and INSERT INTO each string into it's own row.
-router.post('/ingredients', (req, res) => {
-  console.log('What is happening in shopping.list POST router?',req.body.ingredients);
+router.post("/ingredients", (req, res) => {
+  console.log(
+    "What is happening in shopping.list POST router?",
+    req.body.ingredients
+  );
   const ingredients = req.body.ingredients;
 
-  let queryText = "";
-
-  for (const i in ingredients) {
-    queryText += `INSERT INTO "ingredients" VALUES (${ingredients[i]}); `;
-    pool.query(queryText, [ingredients])
+  let promiseList = [];
+  for (const ing of ingredients) {
+    `
+  INSERT INTO "shopping_list" ("ingredient_name")
+  VALUES ($1);`;
+    promiseList.push(ing);
   }
-  console.log(queryText);
-  res.send(queryText).status(200);
+  Promise.all(promiseList)
+    .then((res) => {
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log("Error POSTing Ingredient to db", error);
+      res.sendStatus(500);
+    });
 });
 
 // update ingredients in shopping_list table on database

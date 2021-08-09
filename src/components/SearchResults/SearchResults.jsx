@@ -64,10 +64,6 @@ function SearchResults() {
 
     const handleChange = (event) => {
       setChecked(event.target.checked);
-    //   setIngredientsArray({
-    // //     ...ingredientsArray,
-    // //     [event.target.name]: event.target.checked,
-    // //   });
     };
   }
 
@@ -141,7 +137,6 @@ function SearchResults() {
                       return (
                         <p key={i}>
                           <Checkbox
-                            // value={!setSpecialties.checkedFade}
                             onClick={
                               (event) =>
                                 setNewIngredient([...newIngredient, ingredient])
