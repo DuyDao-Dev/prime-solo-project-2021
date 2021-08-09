@@ -67,7 +67,7 @@ router.put("/:ingredientId", (req, res) => {
   console.log("ingredientId is:", ingredientId);
   const queryCategory = `
   UPDATE shopping_list
-  SET "status" = true
+  SET "status" = NOT status
   WHERE id = $1;`;
 
   pool

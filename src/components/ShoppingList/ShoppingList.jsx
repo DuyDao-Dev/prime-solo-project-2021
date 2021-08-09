@@ -59,12 +59,7 @@ function ShoppingList() {
   };
 
   const onCheckClick = (ingredientChecked) => {
-    // if (checked = true) {
     dispatch({ type: "PUT_INGREDIENT", payload: ingredientChecked.id });
-    // }
-    // else (checked = false) {
-    //     dispatch({ type: "PUT_INGREDIENT", payload: checked})
-    // }
   };
 
   return (
@@ -98,6 +93,7 @@ function ShoppingList() {
                         <Checkbox
                           // need a PUT for this click event
                           onClick={(event) => onCheckClick(ingredient)}
+                          checked={ingredient.status || false}
                           color="default"
                           inputProps={{
                             "aria-label": "checkbox with default color",
@@ -122,7 +118,7 @@ function ShoppingList() {
                 >
             <DeleteIcon />
                 </IconButton>
-                <Typography>Delete</Typography>
+                <Typography>Delete Shopping List</Typography>
                 </CardActions>
         </Card>
     </Grid>
