@@ -54,7 +54,6 @@ function SearchResults() {
   const search = useSelector((store) => store.search);
   const [expanded, setExpanded] = React.useState(false);
   const [newIngredient, setNewIngredient] = useState([]);
-  console.log(`What is onIngredientClick`, newIngredient);
 
   const handleExpandClick = () => {
     setExpanded(!expanded); //set conditional rendering to make shopping cart icon to pop up
