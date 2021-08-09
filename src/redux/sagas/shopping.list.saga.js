@@ -1,5 +1,6 @@
 import axios from "axios";
-import { put, takeEvery } from "redux-saga/effects";
+import { put, call, takeEvery } from "redux-saga/effects";
+
 
 function* shoppingListSaga() {
   yield takeEvery("FETCH_INGREDIENT", fetchIngredient);
@@ -31,11 +32,12 @@ function* postIngredient(action) {
 }
 
 function* putIngredient(action) {
+    console.log(`What is action in PUT shoppinglist`, action);
   try {
     console.log(`PUTting ingredient from putIngredient saga`, action);
-    const response = 
-    yield axios.put('/api/shopping/', action.payload);
-    yield put({ type: "FETCH_INGREDIENT", payload: response.data }); //points to searchReducer in search.reducer
+    yield call (axios.put, `/api/shopping/${action.payload}`, action.payload);
+    console.log("What is the action.payload in shopping.saga", action.payload);
+    yield put({ type: "FETCH_INGREDIENT" }); //points to searchReducer in search.reducer
   } catch (error) {
     console.log("Error GETting search results", error);
   }

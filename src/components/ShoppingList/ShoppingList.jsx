@@ -58,6 +58,15 @@ function ShoppingList() {
     console.log("Deleting item from FavoriteRecipe", deleteItem);
   };
 
+  const onCheckClick = (ingredientChecked) => {
+    // if (checked = true) {
+    dispatch({ type: "PUT_INGREDIENT", payload: ingredientChecked.id });
+    // }
+    // else (checked = false) {
+    //     dispatch({ type: "PUT_INGREDIENT", payload: checked})
+    // }
+  };
+
   return (
     <Grid container className={classes.root} spacing={2}>
         <Card className={classes.root}>
@@ -85,19 +94,18 @@ function ShoppingList() {
                     <div>
                     {shoppingList.map((ingredient, index) => {
                     return (
-                        <h2 key={index}>
+                      <h2 key={index}>
                         <Checkbox
-                    // need a PUT for this click event
-                        // onClick={(event) =>
-                        // //set item to true
-                        // }
-                            color="default"
-                            inputProps={{
+                          // need a PUT for this click event
+                          onClick={(event) => onCheckClick(ingredient)}
+                          color="default"
+                          inputProps={{
                             "aria-label": "checkbox with default color",
-                            }}/>
-                            {ingredient.ingredient_name}
-                        </h2>
-                    )
+                          }}
+                        />
+                        {ingredient.ingredient_name}
+                      </h2>
+                    );
                     })}
                     </div>
                 </section>

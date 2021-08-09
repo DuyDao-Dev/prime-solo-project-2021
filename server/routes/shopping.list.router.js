@@ -9,7 +9,8 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   // Add query to get all genres
   const allIngredientsQuery = `
     SELECT *
-    FROM shopping_list;`;
+    FROM shopping_list
+    ORDER BY id ASC;`;
 
   pool
     .query(allIngredientsQuery)
@@ -23,52 +24,54 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 });
 
 // POST new ingredients
-router.post('/', rejectUnauthenticated, (req, res) => {
-  const newIngredient = req.body;
-  console.log('Ingredient POSTed: ', newIngredient);
-  const queryText = `
-  INSERT INTO "shopping_list" ("ingredient_name") 
-  VALUES ($1);`;
-  pool
-    .query(queryText, [newIngredient])
-    .then((response) => {
-      res.sendStatus(201);
-    })
-    .catch((error) => {
-      console.log("Error POSTing Ingredient to db", error);
-      res.sendStatus(500);
-    });
+// router.post('/', rejectUnauthenticated, (req, res) => {
+//   const newIngredient = req.body;
+//   console.log('Ingredient POSTed: ', newIngredient);
+//   const queryText = `
+//   INSERT INTO "shopping_list" ("ingredient_name") 
+//   VALUES ($1);`;
+//   pool
+//     .query(queryText, [newIngredient])
+//     .then((response) => {
+//       res.sendStatus(201);
+//     })
+//     .catch((error) => {
+//       console.log("Error POSTing Ingredient to db", error);
+//       res.sendStatus(500);
+//     });
   
-});
+// });
 
 // Chad's code to try and INSERT INTO each string into it's own row.
-// router.post('/ingredients', (req, res) => {
-//   console.log('What is happening in shopping.list POST router?',req.body.ingredients);
-//   const ingredients = req.body.ingredients;
+router.post('/ingredients', (req, res) => {
+  console.log('What is happening in shopping.list POST router?',req.body.ingredients);
+  const ingredients = req.body.ingredients;
 
-//   let queryText = "";
+  let queryText = "";
 
-//   for (const i in ingredients) {
-//     queryText += `INSERT INTO "ingredients" VALUES (${ingredients[i]}); `;
-//     pool.query(queryText, [ingredients])
-//   }
-//   console.log(queryText);
-//   res.send(queryText).status(200);
-// });
+  for (const i in ingredients) {
+    queryText += `INSERT INTO "ingredients" VALUES (${ingredients[i]}); `;
+    pool.query(queryText, [ingredients])
+  }
+  console.log(queryText);
+  res.send(queryText).status(200);
+});
 
 // update ingredients in shopping_list table on database
 router.put("/:ingredientId", (req, res) => {
   // req.body should contain a category_id to add to this favorite image
-  const newStatus = req.body.newStatus;
+  //   const newStatus = req.body.newStatus;
   const ingredientId = req.params.ingredientId;
-  console.log("newStatus is:", newStatus);
+  console.log('What is the req.params.id doing in shopping list PUT?',req.params.id)
+//   console.log("newStatus is:", newStatus);
   console.log("ingredientId is:", ingredientId);
-  const queryCategory = `UPDATE shopping_list
-  SET "status" = $1
-  WHERE id = $2;`;
+  const queryCategory = `
+  UPDATE shopping_list
+  SET "status" = true
+  WHERE id = $1;`;
 
   pool
-    .query(queryCategory, [newStatus, ingredientId])
+    .query(queryCategory, [ingredientId])
     .then(() => {
       res.sendStatus(200);
     })
