@@ -19,12 +19,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Grid from "@material-ui/core/Grid";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-import {
-  FormGroup,
-  FormControlLabel,
-  Checkbox,
-  FormControl,
-} from "@material-ui/core";
+import { Checkbox } from "@material-ui/core";
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -141,10 +136,10 @@ function SearchResults() {
               <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
                   <Typography paragraph>Ingredients:</Typography>
-                  <Typography paragraph>
+                  <Typography component={"span"} variant={"body2"}>
                     {result.recipe.ingredientLines.map((ingredient, i) => {
                       return (
-                        <ul key={i}>
+                        <p key={i}>
                           <Checkbox
                             // value={!setSpecialties.checkedFade}
                             onClick={
@@ -158,7 +153,7 @@ function SearchResults() {
                             }}
                           />
                           {ingredient}
-                        </ul>
+                        </p>
                       );
                     })}
                     <Typography>Add to Shopping List</Typography>

@@ -42,26 +42,26 @@ router.post('/', (req, res) => {
 });
 
 // update ingredients in shopping_list table on database
-// router.put("/:favId", (req, res) => {
-//   // req.body should contain a category_id to add to this favorite image
-//   const newCategory = req.body.newCategory;
-//   const favId = req.params.favId;
-//   console.log("newCategory is:", req.body.newCategory);
-//   console.log("favId is:", favId);
-//   const queryCategory = `UPDATE favorites
-//   SET "category" = $1
-//   WHERE id = $2;`;
+router.put("/:favId", (req, res) => {
+  // req.body should contain a category_id to add to this favorite image
+  const newStatus = req.body.newStatus;
+  const ingredientId = req.params.ingredientId;
+  console.log("newStatus is:", newStatus);
+  console.log("ingredientId is:", ingredientId);
+  const queryCategory = `UPDATE shopping_list
+  SET "status" = $1
+  WHERE id = $2;`;
 
-//   pool
-//     .query(queryCategory, [newCategory, favId])
-//     .then(() => {
-//       res.sendStatus(200);
-//     })
-//     .catch((err) => {
-//       console.log("Error completing SELECT plant query", err);
-//       res.sendStatus(500);
-//     });
-// });
+  pool
+    .query(queryCategory, [newStatus, ingredientId])
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log("Error UPDATING PUT for shopping_list", err);
+      res.sendStatus(500);
+    });
+});
 
 // delete ingredients in shopping_list table on database
 router.delete("/:id", rejectUnauthenticated, (req, res) => {

@@ -14,6 +14,8 @@ import { red } from "@material-ui/core/colors";
 import DeleteIcon from "@material-ui/icons/Delete";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Grid from "@material-ui/core/Grid";
+import photo from "../images/Shopping List small.jpeg";
+import { Checkbox } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,59 +49,74 @@ function ShoppingList() {
   const classes = useStyles();
 
   useEffect(() => {
-    dispatch({ type: "FETCH_FAVORITE" });
+    dispatch({ type: "FETCH_INGREDIENT" });
   }, []);
 
   //Need a dispatch to delete recipes
   const handleDelete = (deleteItem) => {
-    dispatch({ type: "DELETE_FAVORITE", payload: deleteItem });
+    dispatch({ type: "DELETE_INGREDIENT", payload: deleteItem });
     console.log("Deleting item from FavoriteRecipe", deleteItem);
   };
 
   return (
     <Grid container className={classes.root} spacing={2}>
-      {shoppingList &&
-        shoppingList.map((list) => {
-          return (
-            <Card className={classes.root}>
-              <CardHeader
-                avatar={
-                  <Avatar aria-label="ingredients" className={classes.avatar}>
+        <Card className={classes.root}>
+            <CardHeader
+            avatar={
+                <Avatar aria-label="ingredients" className={classes.avatar}>
                     I
-                  </Avatar>
-                }
+                </Avatar>
+            }
                 action={
-                  <IconButton aria-label="settings">
+                <IconButton aria-label="settings">
                     <MoreVertIcon />
-                  </IconButton>
+                </IconButton>
                 }
-                title={list.name}
-              />
-              <CardMedia
+                title="Ingredient"
+            />
+            <CardMedia
                 className={classes.media}
-                image={list.image}
-                title={list.name}
-              />
-              <CardContent>
+                image={photo}
+            />
+            <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  <a href={list.url}>Recipe Link: {list.name}</a>
+                    <h1>Shopping List: </h1>
+                <section>
+                    <div>
+                    {shoppingList.map((ingredient, index) => {
+                    return (
+                        <h2 key={index}>
+                        <Checkbox
+                    // need a PUT for this click event
+                        // onClick={(event) =>
+                        // //set item to true
+                        // }
+                            color="default"
+                            inputProps={{
+                            "aria-label": "checkbox with default color",
+                            }}/>
+                            {ingredient.ingredient_name}
+                        </h2>
+                    )
+                    })}
+                    </div>
+                </section>
+
                 </Typography>
-              </CardContent>
-              <CardActions disableSpacing>
-                <IconButton
-                  aria-label="delete"
-                  color="secondary"
-                  onClick={() => {
-                    handleDelete(list.id);
+            </CardContent>
+                <CardActions disableSpacing>
+                    <IconButton
+                    aria-label="delete"
+                    color="secondary"
+                    onClick={() => {
+                    handleDelete(ingredient.id);
                   }}
                 >
-                  <DeleteIcon />
+            <DeleteIcon />
                 </IconButton>
                 <Typography>Delete</Typography>
-              </CardActions>
-            </Card>
-          );
-        })}
+                </CardActions>
+        </Card>
     </Grid>
   );
 }
