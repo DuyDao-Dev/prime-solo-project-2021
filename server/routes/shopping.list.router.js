@@ -23,7 +23,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 });
 
 // POST new ingredients
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   const newIngredient = req.body;
   console.log('Ingredient POSTed: ', newIngredient);
   const queryText = `
@@ -41,8 +41,23 @@ router.post('/', (req, res) => {
   
 });
 
+// Chad's code to try and INSERT INTO each string into it's own row.
+// router.post('/ingredients', (req, res) => {
+//   console.log('What is happening in shopping.list POST router?',req.body.ingredients);
+//   const ingredients = req.body.ingredients;
+
+//   let queryText = "";
+
+//   for (const i in ingredients) {
+//     queryText += `INSERT INTO "ingredients" VALUES (${ingredients[i]}); `;
+//     pool.query(queryText, [ingredients])
+//   }
+//   console.log(queryText);
+//   res.send(queryText).status(200);
+// });
+
 // update ingredients in shopping_list table on database
-router.put("/:favId", (req, res) => {
+router.put("/:ingredientId", (req, res) => {
   // req.body should contain a category_id to add to this favorite image
   const newStatus = req.body.newStatus;
   const ingredientId = req.params.ingredientId;

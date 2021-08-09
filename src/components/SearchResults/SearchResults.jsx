@@ -128,6 +128,7 @@ function SearchResults() {
                   })}
                   onClick={handleExpandClick}
                   aria-expanded={expanded}
+                  //Need to set a recipe.id of some sort to only expand the one recipe.
                   aria-label="show more"
                 >
                   <ExpandMoreIcon />
