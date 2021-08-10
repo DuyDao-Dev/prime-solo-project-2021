@@ -56,7 +56,7 @@ function SearchResults() {
   const [newIngredient, setNewIngredient] = useState([]);
 
   const handleExpandClick = () => {
-    setExpanded(!expanded); //set conditional rendering to make shopping cart icon to pop up
+    setExpanded(!expanded); 
   };
 
   function Checkboxes() {
@@ -76,6 +76,9 @@ function SearchResults() {
   const onIngredientClick = () => {
     dispatch({ type: "POST_INGREDIENT", payload: newIngredient });
     console.log(`What is happening onIngredientClick`, newIngredient);
+    handleExpandClick(expanded);
+    dispatch({ type: "POST_INGREDIENT", payload: ('') });
+    //Need to somehow remove the * now populating on the ingredients. What's causing this?
   };
 
   return (
