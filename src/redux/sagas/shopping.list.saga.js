@@ -24,9 +24,10 @@ function* postIngredient(action) {
   try {
     console.log(`POSTing ingredient from postIngredient saga`, action);
     const response = 
-    yield axios.post('/api/shopping/', action.payload);
+    yield axios.post('/api/shopping/ingredients', {ingredients: action.payload});
     yield put({ type: "FETCH_INGREDIENT", payload: response.data }); //points to searchReducer in search.reducer
-  } catch (error) {
+    console.log(`What is shopping saga POST action.payload?`, action.payload);
+} catch (error) {
     console.log("Error GETting search results", error);
   }
 }
