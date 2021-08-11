@@ -9,14 +9,14 @@ import Link from '@material-ui/core/Link';
 // or even care what the redux state is, so it doesn't need 'connect()'
 
 function Footer() {
-  return(
+  return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      {"Copyright © "}
+      <Link color="inherit" href="https://www.linkedin.com/in/duy-dao-455a5a6/">
         Daonamic Coding
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }

@@ -86,87 +86,94 @@ function SearchResults() {
       {search &&
         search.map((result, index) => {
           return (
-            <Card className={classes.root} key={index}>
-              <CardHeader
-                avatar={
-                  <Avatar aria-label="recipe" className={classes.avatar}>
-                    R
-                  </Avatar>
-                }
-                action={
-                  <IconButton aria-label="settings">
-                    <MoreVertIcon />
-                  </IconButton>
-                }
-                title={result.recipe.label}
-              />
-              <CardMedia
-                className={classes.media}
-                image={result.recipe.image}
-                title={result.recipe.label}
-              />
-              <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  <a href={result.recipe.url}>
-                    Recipe Link: {result.recipe.label}
-                  </a>
-                </Typography>
-              </CardContent>
-              <CardActions disableSpacing>
-                <IconButton
-                  aria-label="add to favorites"
-                  onClick={(event) => onFavoriteClick(result.recipe)}
-                >
-                  <FavoriteIcon />
-                </IconButton>
-
-                <IconButton
-                  className={clsx(classes.expand, {
-                    [classes.expandOpen]: expanded,
-                  })}
-                  onClick={handleExpandClick}
-                  aria-expanded={expanded}
-                  //Need to set a recipe.id of some sort to only expand the one recipe.
-                  aria-label="show more"
-                >
-                  <ExpandMoreIcon />
-                </IconButton>
-              </CardActions>
-              <Collapse in={expanded} timeout="auto" unmountOnExit>
+            <Grid item spacing={3} >
+              <Card className={classes.root} key={index}>
+                <CardHeader
+                  avatar={
+                    <Avatar aria-label="recipe" className={classes.avatar}>
+                      R
+                    </Avatar>
+                  }
+                  action={
+                    <IconButton aria-label="settings">
+                      <MoreVertIcon />
+                    </IconButton>
+                  }
+                  title={result.recipe.label}
+                />
+                <CardMedia
+                  className={classes.media}
+                  image={result.recipe.image}
+                  title={result.recipe.label}
+                />
                 <CardContent>
-                  <Typography paragraph>Ingredients:</Typography>
-                  <Typography component={"span"} variant={"body2"}>
-                    {result.recipe.ingredientLines.map((ingredient, i) => {
-                      return (
-                        <p key={i}>
-                          <Checkbox
-                            onClick={
-                              (event) =>
-                                setNewIngredient([...newIngredient, ingredient])
-                              //...newIngredient spreader allows me to push ingredients into it.
-                            }
-                            color="default"
-                            inputProps={{
-                              "aria-label": "checkbox with default color",
-                            }}
-                          />
-                          {ingredient}
-                        </p>
-                      );
-                    })}
-                    
-                  </Typography>
-                  <IconButton
-                    onClick={(event) => onIngredientClick()}
-                    color="primary"
-                    aria-label="add to shopping cart"
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
                   >
-                    <AddShoppingCartIcon />
-                  </IconButton>
-                  <Typography>Add to Shopping List</Typography>
+                    <a href={result.recipe.url}>
+                      Recipe Link: {result.recipe.label}
+                    </a>
+                  </Typography>
                 </CardContent>
-              </Collapse>
-            </Card>
+                <CardActions disableSpacing>
+                  <IconButton
+                    aria-label="add to favorites"
+                    onClick={(event) => onFavoriteClick(result.recipe)}
+                  >
+                    <FavoriteIcon />
+                  </IconButton>
+                  <IconButton
+                    className={clsx(classes.expand, {
+                      [classes.expandOpen]: expanded,
+                    })}
+                    onClick={handleExpandClick}
+                    aria-expanded={expanded}
+                    //Need to set a recipe.id of some sort to only expand the one recipe.
+                    aria-label="show more"
+                  >
+                    <ExpandMoreIcon />
+                  </IconButton>
+                </CardActions>
+                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                  <CardContent>
+                    <Typography paragraph>Ingredients:</Typography>
+                    <Typography component={"span"} variant={"body2"}>
+                      {result.recipe.ingredientLines.map((ingredient, i) => {
+                        return (
+                          <p key={i}>
+                            <Checkbox
+                              onClick={
+                                (event) =>
+                                  setNewIngredient([
+                                    ...newIngredient,
+                                    ingredient,
+                                  ])
+                                //...newIngredient spreader allows me to push ingredients into it.
+                              }
+                              color="default"
+                              inputProps={{
+                                "aria-label": "checkbox with default color",
+                              }}
+                            />
+                            {ingredient}
+                          </p>
+                        );
+                      })}
+                    </Typography>
+                    <IconButton
+                      onClick={(event) => onIngredientClick()}
+                      color="primary"
+                      aria-label="add to shopping cart"
+                    >
+                      <AddShoppingCartIcon />
+                    </IconButton>
+                    <Typography>Add to Shopping List</Typography>
+                  </CardContent>
+                </Collapse>
+              </Card>
+            </Grid>
           );
         })}
     </Grid>
