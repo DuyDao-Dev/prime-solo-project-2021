@@ -64,5 +64,8 @@ typings/
 # dotenv environment variables file
 .env
 
+# api keys
+.env   
+
 # ignore package-lock as it complicates merging
 package-lock.json

@@ -9,10 +9,12 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   // Add query to get all genres
   const allFavoriteQuery = `
     SELECT *
-    FROM favorite_recipe;`;
+    FROM favorite_recipe
+    WHERE user_id=$1
+    ORDER BY id ASC;`;
 
   pool
-    .query(allFavoriteQuery)
+    .query(allFavoriteQuery, [req.user.id])
     .then((result) => {
       res.send(result.rows);
     })

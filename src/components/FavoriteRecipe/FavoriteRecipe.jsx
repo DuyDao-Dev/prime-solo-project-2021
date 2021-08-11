@@ -53,6 +53,7 @@ function FavoriteRecipe () {
     dispatch({ type: "FETCH_FAVORITE" });
     }, []);
 
+
     //STRETCH GOAL: Rating system for favorite recipes
     //Need a dispatch to delete recipes
     const handleDelete = (deleteItem) => {

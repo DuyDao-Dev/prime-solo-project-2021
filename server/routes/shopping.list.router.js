@@ -10,10 +10,11 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   const allIngredientsQuery = `
     SELECT *
     FROM shopping_list
+    WHERE user_id=$1
     ORDER BY id ASC;`;
 
   pool
-    .query(allIngredientsQuery)
+    .query(allIngredientsQuery, [req.user.id])
     .then((result) => {
       res.send(result.rows);
     })
