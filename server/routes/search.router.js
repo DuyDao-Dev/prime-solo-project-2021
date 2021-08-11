@@ -10,12 +10,9 @@ require("../modules/authentication-middleware").rejectUnauthenticated;
 router.get("/:search", rejectUnauthenticated, (req, res) => {
   const search = req.params.search;
   console.log(`Search get router`, req.params.search);
-
   axios
     .get(
-      `https://api.edamam.com/api/recipes/v2?type=public&q=${search}&app_id=42f22cbe&app_key=c3f8615cb868c6628ceb47245c103500&ingr=1-10&imageSize=SMALL&random=true&field=label&field=image&field=url&field=ingredientLines&limit=5`
-      // ${process.env.APP_ID}&app_key=${process.env.API_KEY} //Currently not working in the API link
-      // `https://api.edamam.com/api/recipes/v2?type=public&q=${search}&app_id=${process.env.APP_ID}&app_key=${process.env.API_KEY}&ingr=1-10&imageSize=SMALL&random=true&field=label&field=image&field=url&field=ingredientLines&limit=5`
+      `https://api.edamam.com/api/recipes/v2?type=public&q=${search}&app_id=${process.env.REACT_APP_APP_ID}&app_key=${process.env.REACT_APP_API_KEY}&ingr=1-10&imageSize=SMALL&random=true&field=label&field=image&field=url&field=ingredientLines&limit=5`
     )
     .then((response) => {
       console.log(`server GETting response`, response.data.hits[0]);
