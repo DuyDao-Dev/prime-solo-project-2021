@@ -53,3 +53,34 @@ function Nav() {
 }
 
 export default Nav;
+
+
+  // return (
+  //   <div className={classes.root}>
+  //     <AppBar position="static">
+  //       <Toolbar>
+  //         <MenuIcon
+  //           aria-controls="simple-menu"
+  //           aria-haspopup="true"
+  //           onClick={handleClick}
+  //         />
+  //         <Menu
+  //           id="simple-menu"
+  //           anchorEl={anchorEl}
+  //           keepMounted
+  //           open={Boolean(anchorEl)}
+  //           onClose={handleClose}
+  //         >
+  //           <MenuItem onClick={handleClose}>Profile</MenuItem>
+  //           <MenuItem onClick={handleClose}>My account</MenuItem>
+  //           <MenuItem onClick={handleClose}>Logout</MenuItem>
+  //         </Menu>
+  //         {/* </IconButton> */}
+  //         <Typography variant="h6" className={classes.title}>
+  //           No Thyme
+  //         </Typography>
+  //         <Button color="inherit">Login</Button>
+  //       </Toolbar>
+  //     </AppBar>
+  //   </div>
+  // );

@@ -22,7 +22,6 @@ function* fetchIngredient() {
 
 function* postIngredient(action) {
   try {
-    console.log(`POSTing ingredient from postIngredient saga`, action);
     const response = 
     yield axios.post('/api/shopping/ingredients', {ingredients: action.payload});
     yield put({ type: "FETCH_INGREDIENT", payload: response.data }); //points to searchReducer in search.reducer

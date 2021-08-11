@@ -24,49 +24,6 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 });
 
 // POST new ingredients
-// router.post('/', rejectUnauthenticated, (req, res) => {
-//   const newIngredient = req.body;
-//   console.log('Ingredient POSTed: ', newIngredient);
-//   const queryText = `
-//   INSERT INTO "shopping_list" ("ingredient_name") 
-//   VALUES ($1);`;
-//   pool
-//     .query(queryText, [newIngredient])
-//     .then((response) => {
-//       res.sendStatus(201);
-//     })
-//     .catch((error) => {
-//       console.log("Error POSTing Ingredient to db", error);
-//       res.sendStatus(500);
-//     });
-  
-// });
-
-// Chad's code to try and INSERT INTO each string into it's own row.
-// router.post("/ingredients", (req, res) => {
-//   console.log(
-//     "What is happening in shopping.list POST router?",
-//     req.body.ingredients
-//   );
-//   const ingredients = req.body.ingredients;
-
-//   let promiseList = [];
-//   for (const ing of ingredients) {
-//     `
-//   INSERT INTO "shopping_list" ("ingredient_name")
-//   VALUES ($1);`;
-//     promiseList.push(ing);
-//   }
-//   Promise.all(promiseList)
-//     .then((res) => {
-//       res.sendStatus(201);
-//     })
-//     .catch((error) => {
-//       console.log("Error POSTing Ingredient to db", error);
-//       res.sendStatus(500);
-//     });
-// });
-
 router.post("/ingredients", (req, res) => {
   console.log(
     "What is happening in shopping.list POST router?",
@@ -77,18 +34,21 @@ router.post("/ingredients", (req, res) => {
 let promiseList = [];
     console.log('What is ingredients on router.post', ingredients);
   for (const ing of ingredients) {
-    const query = pool.query('INSERT INTO "shopping_list" ("ingredient_name") VALUES ($1);', [ing]);
+    const query = pool.query('INSERT INTO "shopping_list" ("ingredient_name", "user_id") VALUES ($1, $2);', [ing, req.user.id]);
     promiseList.push(query);
   }
   Promise.all(promiseList)
     .then((resp) => {
-      res.send(resp.data);
+      res.sendStatus(201);
     })
     .catch((error) => {
       console.log("Error POSTing Ingredient to db", error);
       res.sendStatus(500);
     });
 });
+
+
+
 
 // update ingredients in shopping_list table on database
 router.put("/:ingredientId", (req, res) => {

@@ -20,7 +20,7 @@ function* fetchFavorite() {
 
 function* postFavorite(action) {
   try {
-    console.log(`POSTing search from fetchSearch saga`, action);
+    console.log(`POSTing favorite saga`, action);
     const response = 
     yield axios.post('/api/favorite/', action.payload);
     yield put({ type: "FETCH_FAVORITE", payload: response.data }); //points to searchReducer in search.reducer

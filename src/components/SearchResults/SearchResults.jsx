@@ -75,9 +75,9 @@ function SearchResults() {
 
   const onIngredientClick = () => {
     dispatch({ type: "POST_INGREDIENT", payload: newIngredient });
-    console.log(`What is happening onIngredientClick`, newIngredient);
+    // console.log(`What is happening onIngredientClick`, newIngredient);
     handleExpandClick(expanded);
-    dispatch({ type: "POST_INGREDIENT", payload: ('') });
+    setNewIngredient([]);
     //Need to somehow remove the * now populating on the ingredients. What's causing this?
   };
 
@@ -154,7 +154,7 @@ function SearchResults() {
                         </p>
                       );
                     })}
-                    <Typography>Add to Shopping List</Typography>
+                    
                   </Typography>
                   <IconButton
                     onClick={(event) => onIngredientClick()}

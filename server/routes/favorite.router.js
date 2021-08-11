@@ -28,10 +28,10 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   const newFavorite = req.body;
   console.log('FAVORITE ADDED', newFavorite);
   const queryText = `
-  INSERT INTO "favorite_recipe" ("name", "image", "url") 
-  VALUES ($1, $2, $3);`;
+  INSERT INTO "favorite_recipe" ("name", "image", "url", "user_id") 
+  VALUES ($1, $2, $3, $4);`;
   pool
-    .query(queryText, [newFavorite.label, newFavorite.image, newFavorite.url])
+    .query(queryText, [newFavorite.label, newFavorite.image, newFavorite.url, req.user.id])
     .then((response) => {
       res.sendStatus(201);
     })
@@ -60,6 +60,7 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
       res.sendStatus(500);
     });
 });
+
 
 
 module.exports = router;

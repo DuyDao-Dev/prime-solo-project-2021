@@ -11,17 +11,16 @@ CREATE TABLE "user" (
 
 CREATE TABLE "shopping_list" (
     "id" SERIAL PRIMARY KEY,
-    "ingredient_name" VARCHAR (80) UNIQUE NOT NULL,
-    "status" BOOLEAN DEFAULT FALSE
+    "ingredient_name" VARCHAR (80) NOT NULL,
+    "status" BOOLEAN DEFAULT FALSE,
+    "user_id" VARCHAR (80) NOT NULL
 );
 
 CREATE TABLE "favorite_recipe" (
     "id" SERIAL PRIMARY KEY,
-    "name" VARCHAR (80) UNIQUE NOT NULL,
+    "name" VARCHAR (80) NOT NULL,
     "image" VARCHAR (255) NOT NULL,
-    "url" VARCHAR (255) NOT NULL
+    "url" VARCHAR (255) NOT NULL,
+    "user_id" VARCHAR (80) NOT NULL
 );
 
-
-INSERT INTO "favorite_recipe" ("name", "image", "url")
-VALUES ('M&M Cookies', 'https://cdn.sallysbakingaddiction.com/wp-content/uploads/2012/01/mm-cookies-600x900.jpg.webp','https://lmld.org/monster-cookie-dough-dip-cheeseball/');
