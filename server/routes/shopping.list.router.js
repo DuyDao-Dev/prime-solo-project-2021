@@ -76,14 +76,13 @@ router.put("/:ingredientId", (req, res) => {
 });
 
 // delete ingredients in shopping_list table on database
-router.delete("/:id", rejectUnauthenticated, (req, res) => {
+router.delete("/ingredients", rejectUnauthenticated, (req, res) => {
   // endpoint functionality
-  console.log(`What is being DELETED:`, req.params.id);
   const deleteIngredientsQuery = `
-  DELETE from favorite_recipe 
-  WHERE id=$1;`;
+  DELETE from shopping_list
+  WHERE status=TRUE AND user_id=$1;`;
   pool
-    .query(deleteIngredientsQuery, [req.params.id])
+    .query(deleteIngredientsQuery, [req.user.id])
     .then((result) => {
       console.log(`Successfully DELETED from database`, result);
       res.sendStatus(201);

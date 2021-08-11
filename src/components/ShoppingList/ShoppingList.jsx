@@ -55,9 +55,9 @@ function ShoppingList() {
 
   //Need a dispatch to delete recipes
   const handleDelete = (deleteItem) => {
-    dispatch({ type: "DELETE_INGREDIENT", payload: deleteItem.id });
+    dispatch({ type: "DELETE_INGREDIENT"});
     console.log("Deleting item from FavoriteRecipe", deleteItem);
-  };
+  };//No need for a payload. Triggering DELETE event and let the SQL Query delete where the status is true and user_id of current user.
 
   const onCheckClick = (ingredientChecked) => {
     dispatch({ type: "PUT_INGREDIENT", payload: ingredientChecked.id });
@@ -84,7 +84,7 @@ function ShoppingList() {
                 image={photo}
             />
             <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
+                <Typography variant="body2" color="textSecondary" component={"span"}>
                     <h1>Shopping List: </h1>
                 <section>
                     <div>
@@ -114,7 +114,7 @@ function ShoppingList() {
                     aria-label="delete"
                     color="secondary"
                     onClick={() => {
-                    handleDelete(ingredient.status || false);
+                    handleDelete(shoppingList);
                   }}
                 >
             <DeleteIcon />

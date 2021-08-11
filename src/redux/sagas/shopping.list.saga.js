@@ -43,11 +43,10 @@ function* putIngredient(action) {
   }
 }
 
-function* deleteIngredient(action) {
+function* deleteIngredient() {
   try {
-    console.log(`DELETE ingredient from deleteIngredient saga`, action);
     const response = 
-    yield axios.delete(`/api/shopping/${action.payload}`);
+    yield axios.delete(`/api/shopping/ingredients`);
     yield put({ type: "FETCH_INGREDIENT", payload: response.data }); //points to searchReducer in search.reducer
   } catch (error) {
     console.log("Error GETting search results", error);
