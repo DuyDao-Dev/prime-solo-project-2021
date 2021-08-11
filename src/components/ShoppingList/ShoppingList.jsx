@@ -65,30 +65,32 @@ function ShoppingList() {
 
   return (
     <Grid container className={classes.root} spacing={2}>
+      <Grid item xs={12}>
         <Card className={classes.root}>
-            <CardHeader
+          <CardHeader
             avatar={
-                <Avatar aria-label="ingredients" className={classes.avatar}>
-                    I
-                </Avatar>
+              <Avatar aria-label="ingredients" className={classes.avatar}>
+                I
+              </Avatar>
             }
-                action={
-                <IconButton aria-label="settings">
-                    <MoreVertIcon />
-                </IconButton>
-                }
-                title="Ingredient"
-            />
-            <CardMedia
-                className={classes.media}
-                image={photo}
-            />
-            <CardContent>
-                <Typography variant="body2" color="textSecondary" component={"span"}>
-                    <h1>Shopping List: </h1>
-                <section>
-                    <div>
-                    {shoppingList.map((ingredient, index) => {
+            action={
+              <IconButton aria-label="settings">
+                <MoreVertIcon />
+              </IconButton>
+            }
+            title="Ingredient"
+          />
+          <CardMedia className={classes.media} image={photo} />
+          <CardContent>
+            <Typography
+              variant="body2"
+              color="textSecondary"
+              component={"span"}
+            >
+              <h1>Shopping List: </h1>
+              <section>
+                <div>
+                  {shoppingList.map((ingredient, index) => {
                     return (
                       <h2 key={index}>
                         <Checkbox
@@ -103,25 +105,25 @@ function ShoppingList() {
                         {ingredient.ingredient_name}
                       </h2>
                     );
-                    })}
-                    </div>
-                </section>
-
-                </Typography>
-            </CardContent>
-                <CardActions disableSpacing>
-                    <IconButton
-                    aria-label="delete"
-                    color="secondary"
-                    onClick={() => {
-                    handleDelete(shoppingList);
-                  }}
-                >
-            <DeleteIcon />
-                </IconButton>
-                <Typography>Delete Shopping List</Typography>
-                </CardActions>
+                  })}
+                </div>
+              </section>
+            </Typography>
+          </CardContent>
+          <CardActions disableSpacing>
+            <IconButton
+              aria-label="delete"
+              color="secondary"
+              onClick={() => {
+                handleDelete(shoppingList);
+              }}
+            >
+              <DeleteIcon />
+            </IconButton>
+            <Typography>Delete Shopping List</Typography>
+          </CardActions>
         </Card>
+      </Grid>
     </Grid>
   );
 }
