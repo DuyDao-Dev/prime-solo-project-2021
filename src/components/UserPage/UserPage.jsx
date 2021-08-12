@@ -7,9 +7,20 @@ function UserPage() {
   const user = useSelector((store) => store.user);
   return (
     <div className="container">
-      <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-      <LogOutButton className="btn" />
+      <h2>Welcome, to No Thyme {user.username}!</h2>
+      {/* <p>Your ID is: {user.id}</p> */}
+      <h3>Where having No Thyme, saves time.</h3>
+      <ul>
+        <li>
+          With No Thyme you can enter your ingredients you have on hand and
+          search for recipes matching those ingredients.
+        </li>
+        <li>Enjoy those recipes? Add them to your favorites! </li>
+        <li>Missing ingredients? No problem! Check off the missing
+          ingredients and add them to your shopping list. 
+        </li>
+      </ul>
+      {/* <LogOutButton className="btn" /> */}
     </div>
   );
 }

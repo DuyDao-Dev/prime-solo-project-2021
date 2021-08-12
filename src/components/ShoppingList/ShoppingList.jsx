@@ -73,12 +73,12 @@ function ShoppingList() {
                 I
               </Avatar>
             }
-            action={
-              <IconButton aria-label="settings">
-                <MoreVertIcon />
-              </IconButton>
-            }
-            title="Ingredient"
+            // action={
+            //   <IconButton aria-label="settings">
+            //     <MoreVertIcon />
+            //   </IconButton>
+            // }
+            title="Ingredients"
           />
           <CardMedia className={classes.media} image={photo} />
           <CardContent>

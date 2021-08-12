@@ -113,8 +113,6 @@ function Nav() {
                 </MenuItem>
                 <MenuItem className="navLink">About</MenuItem>
                 <LogOutButton className="navLink" />
-                {/* <MenuItem className="navLink" 
-            onClick={handleClose}>Logout</MenuItem> */}
               </>
             )}
           </Menu>
