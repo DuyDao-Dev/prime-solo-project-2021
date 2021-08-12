@@ -123,7 +123,8 @@ function RegisterForm() {
               href="#" 
               variant="body2" 
               onClick={() => {
-                history.push("/login")}}>
+                history.push("/login");
+                }}>
                 {"Already have an account? Sign in"}
               </Link>
             </Grid>

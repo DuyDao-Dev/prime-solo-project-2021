@@ -1,7 +1,7 @@
 //Material UI Nav Bar
 import React from "react";
 import LogOutButton from "../LogOutButton/LogOutButton";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -31,7 +31,6 @@ function Nav() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const user = useSelector((store) => store.user);
   const history = useHistory();
-  const dispatch = useDispatch();
 
   let loginLinkData = {
     path: "/login",
@@ -50,11 +49,6 @@ function Nav() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const logOutButton = (props) => {
-    className={props.className}
-      dispatch({ type: 'LOGOUT' })
-  }
 
   return (
     <div className={classes.root}>
@@ -79,23 +73,41 @@ function Nav() {
             >
               {loginLinkData.text}
             </MenuItem>
-            <MenuItem className="navLink" onClick={history.push("/home")}>
-              Home
-            </MenuItem>
-            <MenuItem className="navLink" onClick={history.push("/search")}>
-              Search
-            </MenuItem>
-            <MenuItem className="navLink" onClick={history.push("/favorite")}>
-              Favorite Recipes
-            </MenuItem>
-            <MenuItem className="navLink" onClick={history.push("/shopping")}>
-              Shopping List
-            </MenuItem>
             {user.id && (
               <>
-                <MenuItem className="navLink" onClick={history.push("/search")}>
-                  About
+                <MenuItem
+                  className="navLink"
+                  onClick={() => {
+                    history.push("/home");
+                  }}
+                >
+                  Home
                 </MenuItem>
+                <MenuItem
+                  className="navLink"
+                  onClick={() => {
+                    history.push("/search");
+                  }}
+                >
+                  Search
+                </MenuItem>
+                <MenuItem
+                  className="navLink"
+                  onClick={() => {
+                    history.push("/favorite");
+                  }}
+                >
+                  Favorite Recipes
+                </MenuItem>
+                <MenuItem
+                  className="navLink"
+                  onClick={() => {
+                    history.push("/shopping");
+                  }}
+                >
+                  Shopping List
+                </MenuItem>
+                <MenuItem className="navLink">About</MenuItem>
                 <LogOutButton className="navLink" />
                 {/* <MenuItem className="navLink" 
             onClick={handleClose}>Logout</MenuItem> */}
@@ -106,8 +118,14 @@ function Nav() {
           <Typography variant="h6" className={classes.title}>
             No Thyme
           </Typography>
-          <Button color="inherit"
-            onClick={() => {logOutButton(props)}}>Logout</Button>
+          <Button
+            color="inherit"
+            onClick={() => {
+              history.push("/login");
+            }}
+          >
+            Login
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
