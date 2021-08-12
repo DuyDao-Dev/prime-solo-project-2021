@@ -1,19 +1,49 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import MenuItem from "@material-ui/core/MenuItem";
 
 function LogOutButton(props) {
   const dispatch = useDispatch();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleLogOut = () => {
+    setAnchorEl(event.currentTarget);
+    dispatch({ type: "LOGOUT" });
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
-    <button
+    <MenuItem
       // This button shows up in multiple locations and is styled differently
       // because it's styled differently depending on where it is used, the className
       // is passed to it from it's parents through React props
       className={props.className}
-      onClick={() => dispatch({ type: 'LOGOUT' })}
+      onClick={() => handleLogOut()}
     >
       Log Out
-    </button>
+    </MenuItem>
   );
 }
 
 export default LogOutButton;
+
+//Original Logout code
+// function LogOutButton(props) {
+//   const dispatch = useDispatch();
+//   return (
+//     <button
+//       // This button shows up in multiple locations and is styled differently
+//       // because it's styled differently depending on where it is used, the className
+//       // is passed to it from it's parents through React props
+//       className={props.className}
+//       onClick={() => dispatch({ type: 'LOGOUT' })}
+//     >
+//       Log Out
+//     </button>
+//   );
+// }
+
+// export default LogOutButton;
