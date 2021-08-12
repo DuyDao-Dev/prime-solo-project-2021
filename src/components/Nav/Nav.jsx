@@ -39,7 +39,7 @@ function Nav() {
 
   if (user.id != null) {
     loginLinkData.path = "/user";
-    loginLinkData.text = "Home";
+    // loginLinkData.text = "Home";
   }
 
   const handleClick = (event) => {
@@ -79,6 +79,7 @@ function Nav() {
                   className="navLink"
                   onClick={() => {
                     history.push("/home");
+                    handleClose();
                   }}
                 >
                   Home
@@ -87,6 +88,7 @@ function Nav() {
                   className="navLink"
                   onClick={() => {
                     history.push("/search");
+                    handleClose();
                   }}
                 >
                   Search
@@ -95,6 +97,7 @@ function Nav() {
                   className="navLink"
                   onClick={() => {
                     history.push("/favorite");
+                    handleClose();
                   }}
                 >
                   Favorite Recipes
@@ -103,6 +106,7 @@ function Nav() {
                   className="navLink"
                   onClick={() => {
                     history.push("/shopping");
+                    handleClose();
                   }}
                 >
                   Shopping List

@@ -10,14 +10,19 @@ import Link from '@material-ui/core/Link';
 
 function Footer() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://www.linkedin.com/in/duy-dao-455a5a6/">
-        Daonamic Coding
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
+    <footer>
+      <Typography variant="body2" color="textSecondary" align="center">
+        {"Copyright © "}
+        <Link
+          color="inherit"
+          href="https://www.linkedin.com/in/duy-dao-455a5a6/"
+        >
+          Daonamic Coding
+        </Link>{" "}
+        {new Date().getFullYear()}
+        {"."}
+      </Typography>
+    </footer>
   );
 }
 

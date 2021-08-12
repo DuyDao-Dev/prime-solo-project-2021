@@ -86,7 +86,7 @@ function SearchResults() {
       {search &&
         search.map((result, index) => {
           return (
-            <Grid item spacing={3} >
+            <Grid item spacing={3} xs={12} sm={12} md={6} lg={4}>
               <Card className={classes.root} key={index}>
                 <CardHeader
                   avatar={
@@ -122,7 +122,8 @@ function SearchResults() {
                     aria-label="add to favorites"
                     onClick={(event) => onFavoriteClick(result.recipe)}
                   >
-                    <FavoriteIcon />
+                    <FavoriteIcon /> 
+                    {/* Needs to change color on click */}
                   </IconButton>
                   <IconButton
                     className={clsx(classes.expand, {

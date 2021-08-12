@@ -25,7 +25,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 });
 
 // POST new ingredients
-router.post("/ingredients", (req, res) => {
+router.post("/ingredients", rejectUnauthenticated, (req, res) => {
   console.log(
     "What is happening in shopping.list POST router?",
     req.body
@@ -50,9 +50,8 @@ let promiseList = [];
 
 
 
-
 // update ingredients in shopping_list table on database
-router.put("/:ingredientId", (req, res) => {
+router.put("/:ingredientId", rejectUnauthenticated, (req, res) => {
   // req.body should contain a category_id to add to this favorite image
   //   const newStatus = req.body.newStatus;
   const ingredientId = req.params.ingredientId;
