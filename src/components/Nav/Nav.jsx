@@ -2,6 +2,7 @@
 import React from "react";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -9,10 +10,10 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import MenuIcon from "@material-ui/icons/Menu";
-
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import { useHistory } from "react-router-dom";
+
+import "animate.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -111,18 +112,24 @@ function Nav() {
                 >
                   Shopping List
                 </MenuItem>
-                <MenuItem className="navLink">About</MenuItem>
+                <MenuItem
+                  className="navLink"
+                  onClick={() => {
+                    history.push("/about");
+                    handleClose();
+                  }}
+                >
+                  About
+                </MenuItem>
                 <LogOutButton className="navLink" />
               </>
             )}
           </Menu>
           {/* </IconButton> */}
           <Typography variant="h6" className={classes.title}>
-            <h2
-              class="animate__fadeInDown"
-            >
-              No Thyme
-            </h2>
+            <div>
+              <h2 class="animate__animated animate__fadeInDown">No Thyme</h2>
+            </div>
           </Typography>
           <Button
             color="inherit"

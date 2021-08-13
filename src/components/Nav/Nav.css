@@ -52,7 +52,7 @@
   padding-bottom: 120px;
 } */
 
-.animate__fadeInDown {
+.animate__animated.animate__fadeInDown {
   display: inline-block;
   margin: 0 0.5rem;
 

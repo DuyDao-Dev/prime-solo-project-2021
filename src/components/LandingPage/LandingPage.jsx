@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './LandingPage.css';
+import "animate.css";
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
@@ -14,9 +15,12 @@ function LandingPage() {
 
       <div className="grid">
         <div className="grid-col grid-col_8">
-          <h2>
-            Where having No Thyme, saves time. 
-          </h2>
+          <div class="animate__animated animate__lightSpeedInRight">
+            <h2>Where having No Thyme,</h2>
+          </div>
+          <div class="animate__animated animate__lightSpeedInLeft">
+            <h2>saves time.</h2>
+          </div>
         </div>
         <div className="grid-col grid-col_4">
           <RegisterForm />
