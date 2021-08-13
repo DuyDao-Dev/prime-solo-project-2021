@@ -62,57 +62,60 @@ function FavoriteRecipe () {
     }
 
     return (
-
+      <center>
+        
         <Grid container className={classes.root} spacing={2}>
-          {recipeList &&
-            recipeList.map(list => {
-              return (
-                <Card
-                  className={classes.root}>
-                  <CardHeader
-                    avatar={
-                      <Avatar aria-label="recipe" className={classes.avatar}>
-                        F
-                      </Avatar>
-                    }
-                    action={
-                      <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                      </IconButton>
-                    }
-                    title={list.name}
-                  />
-                  <CardMedia
-                    className={classes.media}
-                    image={list.image}
-                    title={list.name}
-                  />
-                  <CardContent>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                    >
-                      <a href={list.url}>Recipe Link: {list.name}</a>
-                    </Typography>
-                  </CardContent>
-                  <CardActions disableSpacing>
-                    <IconButton
-                      aria-label="delete"
-                      color="secondary"
-                      onClick={() => {
-                        handleDelete(list.id);
-                      }}
-                    >
-                      <DeleteIcon />
-                    </IconButton>
-                    <Typography>Delete</Typography>
-                  </CardActions>
-                </Card>
-              );
-            })}
+            {recipeList &&
+              recipeList.map((list) => {
+                return (
+                  <Grid item item spacing={3} xs={12} sm={12} md={6} lg={4}>
+                    <Card className={classes.root}>
+                      <CardHeader
+                        avatar={
+                          <Avatar aria-label="recipe" className={classes.avatar}>
+                            F
+                          </Avatar>
+                        }
+                        action={
+                          <IconButton aria-label="settings">
+                            <MoreVertIcon />
+                          </IconButton>
+                        }
+                        title={list.name}
+                      />
+                      <CardMedia
+                        className={classes.media}
+                        image={list.image}
+                        title={list.name}
+                      />
+                      <CardContent>
+                        <Typography
+                          variant="body2"
+                          color="textSecondary"
+                          component="p"
+                        >
+                          <a href={list.url}>Recipe Link: {list.name}</a>
+                        </Typography>
+                      </CardContent>
+                      <CardActions disableSpacing>
+                        <IconButton
+                          aria-label="delete"
+                          color="secondary"
+                          onClick={() => {
+                            handleDelete(list.id);
+                          }}
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                        <Typography>Delete</Typography>
+                      </CardActions>
+                    </Card>
+                  </Grid>
+                );
+              })}
         </Grid>
-    )
+      </center>
+    );
 }
 
 export default FavoriteRecipe;

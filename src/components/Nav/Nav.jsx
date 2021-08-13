@@ -118,7 +118,11 @@ function Nav() {
           </Menu>
           {/* </IconButton> */}
           <Typography variant="h6" className={classes.title}>
-            No Thyme
+            <h2
+              class="animate__fadeInDown"
+            >
+              No Thyme
+            </h2>
           </Typography>
           <Button
             color="inherit"

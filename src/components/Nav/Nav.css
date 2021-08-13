@@ -51,3 +51,13 @@
   padding-top: 120px;
   padding-bottom: 120px;
 } */
+
+.animate__fadeInDown {
+  display: inline-block;
+  margin: 0 0.5rem;
+
+  animation: fadeInDown;
+  /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 2s;
+  /* don't forget to set a duration! */
+}
