@@ -3,6 +3,7 @@ import React from "react";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import LogInButton from "../LogInButton/LogInButton";
 
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -131,14 +132,15 @@ function Nav() {
               <h2 class="animate__animated animate__fadeInDown">No Thyme</h2>
             </div>
           </Typography>
-          <Button
+          <LogInButton />
+          {/* <Button
             color="inherit"
             onClick={() => {
               history.push("/login");
             }}
           >
             Login
-          </Button>
+          </Button> */}
         </Toolbar>
       </AppBar>
     </div>

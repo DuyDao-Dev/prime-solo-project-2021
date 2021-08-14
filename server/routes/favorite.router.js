@@ -11,7 +11,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     SELECT *
     FROM favorite_recipe
     WHERE user_id=$1
-    ORDER BY id ASC;`;
+    ORDER BY id DESC;`;
 
   pool
     .query(allFavoriteQuery, [req.user.id])

@@ -23,7 +23,7 @@ import { Checkbox } from "@material-ui/core";
 
 const useStyle = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
+    maxWidth: "90%",
   },
   media: {
     height: 0,
@@ -86,7 +86,7 @@ function SearchResults() {
       {search &&
         search.map((result, index) => {
           return (
-            <Grid item spacing={3} xs={12} sm={12} md={6} lg={4}>
+            <Grid item spacing={3} xs={12} sm={12} md={6} lg={4} xl={3}>
               <Card className={classes.root} key={index}>
                 <CardHeader
                   avatar={
@@ -122,9 +122,19 @@ function SearchResults() {
                     aria-label="add to favorites"
                     onClick={(event) => onFavoriteClick(result.recipe)}
                   >
-                    <FavoriteIcon /> 
+                    <FavoriteIcon color="secondary" />
                     {/* Needs to change color on click */}
                   </IconButton>
+                  <div>
+                    {buttons}
+                    <Snackbar
+                      anchorOrigin={{ vertical, horizontal }}
+                      open={open}
+                      onClose={handleClose}
+                      message="Added to Favorites!"
+                      key={vertical + horizontal}
+                    />
+                  </div>
                   <IconButton
                     className={clsx(classes.expand, {
                       [classes.expandOpen]: expanded,
