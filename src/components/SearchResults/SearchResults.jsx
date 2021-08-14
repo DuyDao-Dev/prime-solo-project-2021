@@ -125,7 +125,7 @@ function SearchResults() {
                     <FavoriteIcon color="secondary" />
                     {/* Needs to change color on click */}
                   </IconButton>
-                  <div>
+                  {/* <div>
                     {buttons}
                     <Snackbar
                       anchorOrigin={{ vertical, horizontal }}
@@ -134,7 +134,7 @@ function SearchResults() {
                       message="Added to Favorites!"
                       key={vertical + horizontal}
                     />
-                  </div>
+                  </div> */}
                   <IconButton
                     className={clsx(classes.expand, {
                       [classes.expandOpen]: expanded,

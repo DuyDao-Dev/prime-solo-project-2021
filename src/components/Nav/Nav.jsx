@@ -133,14 +133,6 @@ function Nav() {
             </div>
           </Typography>
           <LogInButton />
-          {/* <Button
-            color="inherit"
-            onClick={() => {
-              history.push("/login");
-            }}
-          >
-            Login
-          </Button> */}
         </Toolbar>
       </AppBar>
     </div>

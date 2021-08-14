@@ -20,7 +20,6 @@ function UserPage() {
           ingredients and add them to your shopping list. 
         </li>
       </ul>
-      {/* <LogOutButton className="btn" /> */}
     </div>
   );
 }
