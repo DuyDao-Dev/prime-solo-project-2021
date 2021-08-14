@@ -16,6 +16,7 @@ function AboutPage() {
           <li>Express</li>
           <li>PostgreSQL</li>
           <li>React</li>
+          <li>React</li>
           <li>Redux/Saga</li>
           <li>Edamam API</li>
           <li>Material UI</li>
