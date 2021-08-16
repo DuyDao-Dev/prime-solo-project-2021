@@ -7,7 +7,7 @@ function UserPage() {
   const user = useSelector((store) => store.user);
   return (
     <div className="container">
-      <h2>Welcome, to No Thyme {user.username}!</h2>
+      <h2>Welcome to No Thyme, {user.username}!</h2>
       {/* <p>Your ID is: {user.id}</p> */}
       <h3>Where having No Thyme, saves time.</h3>
       <ul>
