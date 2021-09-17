@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // import LoginForm from '../LoginForm/LoginForm';
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-
 
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -17,8 +16,6 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-
-
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -61,7 +58,7 @@ function LoginPage() {
       });
     } else {
       dispatch({ type: "LOGIN_INPUT_ERROR" });
-      }
+    }
   };
 
   return (
@@ -74,9 +71,9 @@ function LoginPage() {
         <Typography component="h1" variant="h5">
           Sign in
           {errors.loginMessage && (
-          <h3 className="alert" role="alert">
-          {errors.loginMessage}
-          </h3>
+            <h3 className="alert" role="alert">
+              {errors.loginMessage}
+            </h3>
           )}
         </Typography>
         <form className={classes.form} noValidate onSubmit={login}>
@@ -126,33 +123,25 @@ function LoginPage() {
             Sign In
           </Button>
           <Grid container>
-            {/* <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid> */}
             <Grid item>
               <Link
                 href="#"
                 variant="body2"
                 onClick={() => {
                   history.push("/registration");
-                }}>
+                }}
+              >
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
           </Grid>
         </form>
       </div>
-      <Box mt={8}>
-      </Box>
+      <Box mt={8}></Box>
     </Container>
   );
 }
 
 export default LoginPage;
-
-
-
 
 //Original Code
