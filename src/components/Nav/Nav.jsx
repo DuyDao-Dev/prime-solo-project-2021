@@ -41,7 +41,6 @@ function Nav() {
 
   if (user.id != null) {
     loginLinkData.path = "/user";
-    // loginLinkData.text = "Home";
   }
 
   const handleClick = (event) => {
