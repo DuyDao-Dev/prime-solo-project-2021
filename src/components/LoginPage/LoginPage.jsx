@@ -143,5 +143,3 @@ function LoginPage() {
 }
 
 export default LoginPage;
-
-//Original Code

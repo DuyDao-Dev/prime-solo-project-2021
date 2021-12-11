@@ -1,7 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-// import { useHistory } from "react-router-dom";
 import React, { useState } from "react";
-
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
@@ -49,16 +47,16 @@ const useStyle = makeStyles((theme) => ({
 
 function SearchResults() {
   const dispatch = useDispatch();
-  //   const [newFavorite, setNewFavorite] = useState("");
   const classes = useStyle();
   const search = useSelector((store) => store.search);
   const [expanded, setExpanded] = React.useState(false);
   const [newIngredient, setNewIngredient] = useState([]);
 
   const handleExpandClick = () => {
-    setExpanded(!expanded); 
+    setExpanded(!expanded);
   };
 
+  //Let's test this later to see if we even still need it or not. **CHECK TO REMOVE**
   function Checkboxes() {
     const [checked, setChecked] = React.useState(true);
 
@@ -78,7 +76,7 @@ function SearchResults() {
     // console.log(`What is happening onIngredientClick`, newIngredient);
     handleExpandClick(expanded);
     setNewIngredient([]);
-    //Need to somehow remove the * now populating on the ingredients. What's causing this?
+    //Need to somehow remove the * now populating on the ingredients. What's causing this? **Created a spreader in setNewIngredient in jsx.**
   };
 
   return (
@@ -112,13 +110,6 @@ function SearchResults() {
                     color="textSecondary"
                     component="p"
                   >
-                    {/* <iframe
-                      width="560"
-                      height="315"
-                      src={result.recipe.url}
-                      frameborder="0"
-                      allowfullscreen
-                    ></iframe> */}
                     <a href={result.recipe.url}>
                       Recipe Link: {result.recipe.label}
                     </a>
@@ -132,16 +123,6 @@ function SearchResults() {
                     <FavoriteIcon color="secondary" />
                     {/* Needs to change color on click */}
                   </IconButton>
-                  {/* <div>
-                    {buttons}
-                    <Snackbar
-                      anchorOrigin={{ vertical, horizontal }}
-                      open={open}
-                      onClose={handleClose}
-                      message="Added to Favorites!"
-                      key={vertical + horizontal}
-                    />
-                  </div> */}
                   <IconButton
                     className={clsx(classes.expand, {
                       [classes.expandOpen]: expanded,
@@ -199,4 +180,3 @@ function SearchResults() {
 }
 
 export default SearchResults;
-

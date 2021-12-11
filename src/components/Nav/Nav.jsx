@@ -125,7 +125,6 @@ function Nav() {
               </>
             )}
           </Menu>
-          {/* </IconButton> */}
           <Typography variant="h6" className={classes.title}>
             <div>
               <h2

@@ -4,32 +4,31 @@ import SearchResults from "../SearchResults/SearchResults";
 import Swal from "sweetalert2";
 
 function Search() {
-    const [search, setSearch] = useState('');
-    const dispatch = useDispatch();
+  const [search, setSearch] = useState("");
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-      Swal.fire({
-        title: "Let's get started! Please add your ingredients.",
-        showClass: {
-          popup: "animate__animated animate__fadeInDown",
-        },
-        hideClass: {
-          popup: "animate__animated animate__fadeOutUp",
-        },
-      });
-    }, []);
+  useEffect(() => {
+    Swal.fire({
+      title: "Let's get started! Please add your ingredients.",
+      showClass: {
+        popup: "animate__animated animate__fadeInDown",
+      },
+      hideClass: {
+        popup: "animate__animated animate__fadeOutUp",
+      },
+    });
+  }, []);
 
-    const handleSearchChange = () => {
-      setSearch(event.target.value);
-    };
+  const handleSearchChange = () => {
+    setSearch(event.target.value);
+  };
 
-    const getSearchResults = (event) => {
+  const getSearchResults = (event) => {
     event.preventDefault();
     dispatch({ type: "FETCH_SEARCH", payload: search });
-    };
+  };
 
   return (
-    //html here
     <form onSubmit={getSearchResults}>
       <center>
         <input
@@ -48,5 +47,3 @@ function Search() {
 }
 
 export default Search;
-
-
