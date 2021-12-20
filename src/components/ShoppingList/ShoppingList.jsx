@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
 import './ShoppingList.css';
-
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -13,7 +12,6 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
 import DeleteIcon from "@material-ui/icons/Delete";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Grid from "@material-ui/core/Grid";
 import photo from "../images/Shopping List small.jpeg";
 import { Checkbox } from "@material-ui/core";
